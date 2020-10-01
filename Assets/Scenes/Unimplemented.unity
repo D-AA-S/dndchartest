@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 1334520226}
   - component: {fileID: 1334520225}
   m_Layer: 0
-  m_Name: Controller
+  m_Name: Scene Swapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
