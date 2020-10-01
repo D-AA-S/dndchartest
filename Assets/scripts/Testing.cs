@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 
 public class Testing : MonoBehaviour
 {
-    void call()
+    public void youclick()
     {
-        Debug.Log("Button is work");
+        Debug.Log("It works!");
     }
 }
