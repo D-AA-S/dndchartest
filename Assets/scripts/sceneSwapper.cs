@@ -8,7 +8,6 @@ public class sceneSwapper : MonoBehaviour
 {
     public void backButton()
     {
-        Debug.Log("TO THE MAIN");
         SceneManager.LoadScene("Main menu"); 
     }
     public void unimplemented()
@@ -26,5 +25,9 @@ public class sceneSwapper : MonoBehaviour
     public void quit()
     {
         Debug.Log("If this were an application we would quit here");
+    }
+    public void rollcha()
+    {
+        SceneManager.LoadScene("RollChar");
     }
 }
