@@ -5,19 +5,6 @@ using System;
 
 public class playerdata : MonoBehaviour
 {
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     [Serializable]
     public class playerinfo
     {
