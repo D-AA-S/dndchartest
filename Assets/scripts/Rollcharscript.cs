@@ -27,9 +27,7 @@ public class rollcharscript : MonoBehaviour
         d6roll.Sort();
         d4roll.Sort();
         total = d6roll[1] + d6roll[2] + d4roll[1] + d4roll[2];
-        Debug.Log(total + " d6rolls: " + d6roll[2] + " " + d6roll[1] + " " + d6roll[0] + "\nd4rolls:" + d4roll[2] + " " + d4roll[1] + " " + d4roll[0]);
-        d6roll.Clear();
-        d4roll.Clear();
+        Debug.Log(total);
         //return total;
     }
 }
