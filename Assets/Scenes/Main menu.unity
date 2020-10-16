@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -284.17, y: -182.54}
+  m_AnchoredPosition: {x: -289, y: -182.54}
   m_SizeDelta: {x: 212.1661, y: 70.72203}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &18158732
@@ -483,14 +483,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1469834882}
-        m_MethodName: unimplemented
-        m_Mode: 1
+        m_MethodName: sceneswap
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ssd
+          m_StringArgument: Unimplemented
           m_BoolArgument: 0
         m_CallState: 1
 --- !u!114 &431593426
@@ -633,14 +633,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1469834882}
-        m_MethodName: rollcha
-        m_Mode: 1
+        m_MethodName: sceneswap
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: RollChar
           m_BoolArgument: 0
         m_CallState: 1
 --- !u!114 &500664227
@@ -799,7 +799,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -284.17, y: -93}
+  m_AnchoredPosition: {x: -289, y: -93}
   m_SizeDelta: {x: 212.1661, y: 70.72203}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &619388325
@@ -846,14 +846,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1469834882}
-        m_MethodName: about
-        m_Mode: 1
+        m_MethodName: sceneswap
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: About
           m_BoolArgument: 0
         m_CallState: 1
 --- !u!114 &619388326
@@ -1288,14 +1288,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1469834882}
-        m_MethodName: settings
-        m_Mode: 1
+        m_MethodName: sceneswap
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Settings
           m_BoolArgument: 0
         m_CallState: 1
 --- !u!114 &1342279820
