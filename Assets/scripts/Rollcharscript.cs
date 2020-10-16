@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class rollcharscript : MonoBehaviour
 {
     //Sorts rolls, totals the largest 2d6 & 2d4, to return total.
-    public void statroller()
+    public void statroller(string stat)
     {
         //Number of rolls for the dice
         int d6Total = 3;
@@ -27,7 +27,6 @@ public class rollcharscript : MonoBehaviour
         d6roll.Sort();
         d4roll.Sort();
         total = d6roll[1] + d6roll[2] + d4roll[1] + d4roll[2];
-        Debug.Log(total);
-        //return total;
+        GameObject.Find(stat).GetComponent <Text>().text = total.ToString(); 
     }
 }
