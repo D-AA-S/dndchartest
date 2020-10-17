@@ -5,6 +5,25 @@ using UnityEngine.UI;
 
 public class rollcharscript : MonoBehaviour
 {
+    List<race> races = new List<race>();
+    public void initialization()
+    {
+
+        new race() { name = "Dragonborn", walkspeed = 30, runspeed = 60, jumpheight = 15, description = "The study of wizardry is ancient, stretching back to the earliest mortal discoveries of magic. As a student of arcane magic, " +
+             "you have a spellbook containing spells that show glimmerings of your true power which is a catalyst for your mastery over certain spells."};
+    }
+
+
+    public void characterclass()
+    {
+
+    }
+
+    public void characterrace()
+    {
+        
+    }
+
     //Sorts rolls, totals the largest 2d6 & 2d4, to return total.
     public void statroller(string stat)
     {
@@ -27,6 +46,21 @@ public class rollcharscript : MonoBehaviour
         d6roll.Sort();
         d4roll.Sort();
         total = d6roll[1] + d6roll[2] + d4roll[1] + d4roll[2];
-        GameObject.Find(stat).GetComponent <Text>().text = total.ToString(); 
+        GameObject.Find(stat).GetComponent<Text>().text = total.ToString();
+    }
+
+    public class race
+    {
+        public string name = "";
+        public string description = "";
+        public int walkspeed = 0;
+        public int runspeed = 0;
+        public int jumpheight = 0;
+    }
+    public class playerclass
+    {
+        string name = "";
+        string description = "";
+        int hp = 0;
     }
 }
