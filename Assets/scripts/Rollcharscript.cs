@@ -44,7 +44,8 @@ public class RollCharScript : MonoBehaviour
         GameObject.Find("classdesc").GetComponent<Text>().text = matching.description;
         GameObject.Find("Hpval").GetComponent<Text>().text = matching.hp.ToString();
         PlayerData.instance.player.playerclass = matching.name;
-        PlayerData.instance.player.maxxp = matching.hp;
+        PlayerData.instance.player.maxhp = matching.hp;
+        PlayerData.instance.player.currenthp = matching.hp;
     }
 
     //find matching race & updates it's corrosponding values
@@ -116,7 +117,8 @@ public class RollCharScript : MonoBehaviour
 
     public void finalize()
     {
-
+        string json = JsonUtility.ToJson(PlayerData.instance.player);
+        Debug.Log(json);
     }
 
     public class race
