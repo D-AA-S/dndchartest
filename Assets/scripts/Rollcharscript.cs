@@ -39,6 +39,8 @@ public class RollCharScript : MonoBehaviour
     public void characterclass()
     {
         string nameMatch = GameObject.Find("classlabel").GetComponent<Text>().text;
+        classplay.Find(x => x.name.Contains(nameMatch));
+        Debug.Log("found");
     }
 
     public void characterrace()
