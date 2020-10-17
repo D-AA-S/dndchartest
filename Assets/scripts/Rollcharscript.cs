@@ -9,6 +9,7 @@ public class RollCharScript : MonoBehaviour
     List<playerclass> classplay = new List<playerclass>();
     public void initialization()
     {
+        new race() {name = "Character's  Race?", walkspeed = 0, runspeed = 0, jumpheight = 0, description = "" };
         new race() {name = "Dragonborn", walkspeed = 30, runspeed = 60, jumpheight = 15, description = "Your draconic heritage manifests in a variety of traits you share with other dragonborn."};
         new race() {name = "Dwarf", walkspeed = 25, runspeed = 50, jumpheight = 10, description = "Your dwarf character has an assortment of in abilities, part and parcel of dwarven nature."};
         new race() {name = "Elf", walkspeed = 30, runspeed = 60, jumpheight = 15, description = "Your elf character has a variety of natural abilities, the result of thousands of years of elven refinement."};
@@ -19,6 +20,7 @@ public class RollCharScript : MonoBehaviour
         new race() {name = "Human", walkspeed = 30, runspeed = 60, jumpheight = 15, description = "It's hard to make generalizations about humans, but your human character has these traits."};
         new race() {name = "Tiefling", walkspeed = 30, runspeed = 60, jumpheight = 15, description = "Tieflings share certain racial traits as a result of their infernal descent."};
 
+        new playerclass() {name = "Character's  Class?", description = "", hp = 0};
         new playerclass() {name = "Barbarian" , description = "In battle, you fight with primal ferocity. For some barbarians, rage is a means to an end–that end being violence.", hp = 12};
         new playerclass() {name = "Bard", description = "Whether singing folk ballads in taverns or elaborate compositions in royal courts, bards use their gifts to hold audiences spellbound.", hp = 8};
         new playerclass() {name = "Cleric", description = "Clerics act as conduits of divine power.", hp = 8};
@@ -37,7 +39,6 @@ public class RollCharScript : MonoBehaviour
     public void characterclass()
     {
         string nameMatch = GameObject.Find("classlabel").GetComponent<Text>().text;
-        //{name = GameObject.Find("classdesc").GetComponent<Text>().text};
     }
 
     public void characterrace()
