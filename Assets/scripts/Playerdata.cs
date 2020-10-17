@@ -29,6 +29,21 @@ public class PlayerData : MonoBehaviour
         public int walkspeed, runspeed, jumpheight;
 
         //inventory
-        public List<String> Inventory; 
+        public List<String> Inventory;
+    }
+    public static PlayerData instance;
+    public playerinfo player;
+    public void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(this.gameObject);
+            instance = this;
+            player = new playerinfo();
+        }
     }
 }

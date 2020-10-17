@@ -7,6 +7,7 @@ public class RollCharScript : MonoBehaviour
 {
     static public List<race> races = new List<race>();
     static public List<playerclass> classplay = new List<playerclass>();
+
     //Adds all races & classes along with corresponding values for later usage
     public void initialization()
     {
@@ -90,7 +91,24 @@ public class RollCharScript : MonoBehaviour
 
     public void finalize()
     {
+        PlayerData.instance.player.ability_str = int.Parse((GameObject.Find("Str").GetComponent<Text>().text));
+        PlayerData.instance.player.ability_con = 20;
 
+       /* GameObject.Find("Dex").GetComponent<Text>().text;
+        GameObject.Find("Con").GetComponent<Text>().text;
+        GameObject.Find("Int").GetComponent<Text>().text;
+        GameObject.Find("Wis").GetComponent<Text>().text;
+        GameObject.Find("Cha").GetComponent<Text>().text;
+        GameObject.Find("Nameval")
+        GameObject.Find("racelabel").GetComponent<Text>().text;
+        GameObject.Find("classlabel").GetComponent<Text>().text;
+        GameObject.Find("Aval").GetComponent<Text>().text;
+        //manually set xp to 0
+        GameObject.Find("Hpval").GetComponent<Text>().text;
+        GameObject.Find("ACval").GetComponent<Text>().text;
+        GameObject.Find("WSval").GetComponent<Text>().text;
+        GameObject.Find("RSval").GetComponent<Text>().text;
+        GameObject.Find("JHval").GetComponent<Text>().text;*/
     }
 
     public class race
