@@ -41,7 +41,7 @@ public class RollCharScript : MonoBehaviour
         string nameMatch = GameObject.Find("classlabel").GetComponent<Text>().text;
         playerclass matching = (classplay.Find(x => x.name == nameMatch));
         GameObject.Find("classdesc").GetComponent<Text>().text = matching.description;
-        GameObject.Find("Hpval").GetComponent<Text>().text = (matching.hp).ToString();
+        GameObject.Find("Hpval").GetComponent<Text>().text = matching.hp.ToString();
     }
 
     public void characterrace()
@@ -49,6 +49,9 @@ public class RollCharScript : MonoBehaviour
         string nameMatch = GameObject.Find("racelabel").GetComponent<Text>().text;
         race matching = (races.Find(x => x.name == nameMatch));
         GameObject.Find("racedesc").GetComponent<Text>().text = matching.description;
+        GameObject.Find("WSval").GetComponent<Text>().text = matching.walkspeed.ToString();
+        GameObject.Find("RSval").GetComponent<Text>().text = matching.runspeed.ToString();
+        GameObject.Find("JHval").GetComponent<Text>().text = matching.jumpheight.ToString();
     }
 
     //Sorts rolls, totals the largest 2d6 & 2d4, to return total.
