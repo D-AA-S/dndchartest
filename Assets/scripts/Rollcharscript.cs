@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class RollCharScript : MonoBehaviour
 {
+    //initialization of race and playerclass lists
     static public List<race> races = new List<race>();
     static public List<playerclass> classplay = new List<playerclass>();
+
     //Adds all races & classes along with corresponding values for later usage
     public void initialization()
     {
@@ -63,11 +65,13 @@ public class RollCharScript : MonoBehaviour
         PlayerData.instance.player.jumpheight = matching.jumpheight;
     }
 
+    //Detects namechanges and adds it to instance
     public void namechange()
     {
         PlayerData.instance.player.character_name = GameObject.Find("Nameval").GetComponent<Text>().text;
     }
 
+    //Same as namechange, except for alignment
     public void Alignment()
     {
         PlayerData.instance.player.alignment = GameObject.Find("Alval").GetComponent<Text>().text;
@@ -79,6 +83,7 @@ public class RollCharScript : MonoBehaviour
         //Number of rolls for the dice
         int d6Total = 3;
         int d4Total = 3;
+
         //list to store rolls
         List<float> d4roll = new List<float>();
         List<float> d6roll = new List<float>();
@@ -96,6 +101,7 @@ public class RollCharScript : MonoBehaviour
         d4roll.Sort();
         total = d6roll[1] + d6roll[2] + d4roll[1] + d4roll[2];
         GameObject.Find(stat).GetComponent<Text>().text = total.ToString();
+
         //Calculates Ac based of base 10 value plus modifier
         if (stat == "Dex")
         {
@@ -104,6 +110,8 @@ public class RollCharScript : MonoBehaviour
             GameObject.Find("ACval").GetComponent<Text>().text = AC;
             PlayerData.instance.player.Armourclass = int.Parse(AC);
         }
+
+        //Modifies instance stat based off of stat being rolled
         switch (stat)
         {
             case "Str": PlayerData.instance.player.ability_str = total; break;
@@ -115,6 +123,7 @@ public class RollCharScript : MonoBehaviour
         }
     }
 
+    //Converts the PlayerData instance into a json file, then outputs it to a window
     public void finalize()
     {
         string json = JsonUtility.ToJson(PlayerData.instance.player);

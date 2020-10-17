@@ -31,8 +31,11 @@ public class PlayerData : MonoBehaviour
         //inventory
         public List<String> Inventory;
     }
+
     public static PlayerData instance;
     public playerinfo player;
+
+    //singltion pattern
     public void Awake()
     {
         if (instance != null && instance != this)
