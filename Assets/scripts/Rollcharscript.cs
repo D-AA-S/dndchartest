@@ -7,6 +7,7 @@ public class RollCharScript : MonoBehaviour
 {
     static public List<race> races = new List<race>();
     static public List<playerclass> classplay = new List<playerclass>();
+    //Adds all races & classes along with corresponding values for later usage
     public void initialization()
     {
         races.Add(new race() {name = "Character's  Race?", walkspeed = 0, runspeed = 0, jumpheight = 0, description = "" });
@@ -35,7 +36,7 @@ public class RollCharScript : MonoBehaviour
         classplay.Add(new playerclass() { name = "Wizard", description = "The study of wizardry is ancient, stretching back to the earliest mortal discoveries of magic. As a student of arcane magic, you have a spellbook containing spells that show glimmerings of your true power which is a catalyst for your mastery over certain spells.", hp = 6 });
     }
 
-
+    //find matching class & updates it's corresponding values
     public void characterclass()
     {
         string nameMatch = GameObject.Find("classlabel").GetComponent<Text>().text;
@@ -44,6 +45,7 @@ public class RollCharScript : MonoBehaviour
         GameObject.Find("Hpval").GetComponent<Text>().text = matching.hp.ToString();
     }
 
+    //find matching race & updates it's corrosponding values
     public void characterrace()
     {
         string nameMatch = GameObject.Find("racelabel").GetComponent<Text>().text;
@@ -77,6 +79,11 @@ public class RollCharScript : MonoBehaviour
         d4roll.Sort();
         total = d6roll[1] + d6roll[2] + d4roll[1] + d4roll[2];
         GameObject.Find(stat).GetComponent<Text>().text = total.ToString();
+    }
+
+    public void finalize()
+    {
+
     }
 
     public class race
