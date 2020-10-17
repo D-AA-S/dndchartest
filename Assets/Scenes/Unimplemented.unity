@@ -606,8 +606,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 166, y: 34.48}
-  m_SizeDelta: {x: 1058.4291, y: 355.04977}
+  m_AnchoredPosition: {x: 0.000015259, y: 35.4}
+  m_SizeDelta: {x: 763.2145, y: 355.04977}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1338873066
 MonoBehaviour:
@@ -641,7 +641,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: These buttons are not implemented! Please go back!
+  m_Text: This is where the play button leads! If you're looking for playerdata,
+    I'm pretty sure it's here!
 --- !u!222 &1338873067
 CanvasRenderer:
   m_ObjectHideFlags: 0
