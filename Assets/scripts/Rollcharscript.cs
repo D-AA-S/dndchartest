@@ -79,6 +79,13 @@ public class RollCharScript : MonoBehaviour
         d4roll.Sort();
         total = d6roll[1] + d6roll[2] + d4roll[1] + d4roll[2];
         GameObject.Find(stat).GetComponent<Text>().text = total.ToString();
+        //Calculates Ac based of base 10 value plus modifier
+        if (stat == "Dex")
+        {
+            string AC = (10 + ((total - 10) / 2)).ToString();
+            AC = (total <= 9) ? AC.Substring(0, 1) : AC.Substring(0, 2);
+            GameObject.Find("ACval").GetComponent<Text>().text = AC;
+        }
     }
 
     public void finalize()
