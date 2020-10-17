@@ -62,6 +62,16 @@ public class RollCharScript : MonoBehaviour
         PlayerData.instance.player.jumpheight = matching.jumpheight;
     }
 
+    public void namechange()
+    {
+        PlayerData.instance.player.character_name = GameObject.Find("Nameval").GetComponent<Text>().text;
+    }
+
+    public void Alignment()
+    {
+        PlayerData.instance.player.alignment = GameObject.Find("Alval").GetComponent<Text>().text;
+    }
+
     //Sorts rolls, totals the largest 2d6 & 2d4, to return total.
     public void statroller(string stat)
     {
@@ -106,22 +116,7 @@ public class RollCharScript : MonoBehaviour
 
     public void finalize()
     {
-        /*string strCheck = GameObject.Find("Str").GetComponent<Text>().text;
-        string dexCheck = GameObject.Find("Dex").GetComponent<Text>().text;
-        string conCheck = GameObject.Find("Con").GetComponent<Text>().text;
-        string intCheck = GameObject.Find("Int").GetComponent<Text>().text;
-        string wisCheck = GameObject.Find("Wis").GetComponent<Text>().text;
-        string chaCheck = GameObject.Find("Cha").GetComponent<Text>().text;
-        string namecheck = GameObject.Find("Nameval").GetComponent<Text>().text;
-        strring GameObject.Find("racelabel").GetComponent<Text>().text;
-        GameObject.Find("classlabel").GetComponent<Text>().text;
-        GameObject.Find("Aval").GetComponent<Text>().text;
-        //manually set xp to 0
-        GameObject.Find("Hpval").GetComponent<Text>().text;
-        GameObject.Find("ACval").GetComponent<Text>().text;
-        GameObject.Find("WSval").GetComponent<Text>().text;
-        GameObject.Find("RSval").GetComponent<Text>().text;
-        GameObject.Find("JHval").GetComponent<Text>().text;*/
+
     }
 
     public class race
