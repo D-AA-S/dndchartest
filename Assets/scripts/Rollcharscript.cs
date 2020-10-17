@@ -7,10 +7,6 @@ public class RollCharScript : MonoBehaviour
 {
     static public List<race> races = new List<race>();
     static public List<playerclass> classplay = new List<playerclass>();
-    bool strCheck, dexCheck, conCheck, intCheck, wisCheck, chaCheck;
-    bool nameChekc, raceCheck, classCheck, alignmentCheck;
-    bool hpCheck, Accheck;
-
     //Adds all races & classes along with corresponding values for later usage
     public void initialization()
     {
@@ -47,6 +43,8 @@ public class RollCharScript : MonoBehaviour
         playerclass matching = (classplay.Find(x => x.name == nameMatch));
         GameObject.Find("classdesc").GetComponent<Text>().text = matching.description;
         GameObject.Find("Hpval").GetComponent<Text>().text = matching.hp.ToString();
+        PlayerData.instance.player.playerclass = matching.name;
+        PlayerData.instance.player.maxxp = matching.hp;
     }
 
     //find matching race & updates it's corrosponding values
@@ -58,6 +56,10 @@ public class RollCharScript : MonoBehaviour
         GameObject.Find("WSval").GetComponent<Text>().text = matching.walkspeed.ToString();
         GameObject.Find("RSval").GetComponent<Text>().text = matching.runspeed.ToString();
         GameObject.Find("JHval").GetComponent<Text>().text = matching.jumpheight.ToString();
+        PlayerData.instance.player.race = matching.name;
+        PlayerData.instance.player.walkspeed = matching.walkspeed;
+        PlayerData.instance.player.runspeed = matching.runspeed;
+        PlayerData.instance.player.jumpheight = matching.jumpheight;
     }
 
     //Sorts rolls, totals the largest 2d6 & 2d4, to return total.
@@ -89,12 +91,22 @@ public class RollCharScript : MonoBehaviour
             string AC = (10 + ((total - 10) / 2)).ToString();
             AC = (total <= 9) ? AC.Substring(0, 1) : AC.Substring(0, 2);
             GameObject.Find("ACval").GetComponent<Text>().text = AC;
+            PlayerData.instance.player.Armourclass = int.Parse(AC);
+        }
+        switch (stat)
+        {
+            case "Str": PlayerData.instance.player.ability_str = total; break;
+            case "Dex": PlayerData.instance.player.ability_dex = total; break;
+            case "Con": PlayerData.instance.player.ability_con = total; break;
+            case "Int": PlayerData.instance.player.ability_int = total; break;
+            case "Wis": PlayerData.instance.player.ability_wis = total; break;
+            case "Cha": PlayerData.instance.player.ability_cha = total; break;
         }
     }
 
     public void finalize()
     {
-        string strCheck = GameObject.Find("Str").GetComponent<Text>().text;
+        /*string strCheck = GameObject.Find("Str").GetComponent<Text>().text;
         string dexCheck = GameObject.Find("Dex").GetComponent<Text>().text;
         string conCheck = GameObject.Find("Con").GetComponent<Text>().text;
         string intCheck = GameObject.Find("Int").GetComponent<Text>().text;
@@ -109,7 +121,7 @@ public class RollCharScript : MonoBehaviour
         GameObject.Find("ACval").GetComponent<Text>().text;
         GameObject.Find("WSval").GetComponent<Text>().text;
         GameObject.Find("RSval").GetComponent<Text>().text;
-        GameObject.Find("JHval").GetComponent<Text>().text;
+        GameObject.Find("JHval").GetComponent<Text>().text;*/
     }
 
     public class race
