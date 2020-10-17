@@ -118,7 +118,7 @@ public class RollCharScript : MonoBehaviour
     public void finalize()
     {
         string json = JsonUtility.ToJson(PlayerData.instance.player);
-        Debug.Log(json);
+        GameObject.Find("Jsonout").GetComponent<Text>().text = json;
     }
 
     public class race
