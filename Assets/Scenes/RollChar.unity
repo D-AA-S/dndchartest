@@ -1016,7 +1016,7 @@ GameObject:
   - component: {fileID: 296819493}
   - component: {fileID: 296819492}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Rollcharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1718,6 +1718,7 @@ RectTransform:
   m_Children:
   - {fileID: 1294617944}
   - {fileID: 1689883768}
+  - {fileID: 1969501842}
   - {fileID: 1243156959}
   m_Father: {fileID: 1384144278}
   m_RootOrder: 2
@@ -3549,7 +3550,7 @@ RectTransform:
   - {fileID: 674818298}
   - {fileID: 622400471}
   m_Father: {fileID: 547495651}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -3635,7 +3636,7 @@ GameObject:
   - component: {fileID: 1294617946}
   - component: {fileID: 1294617945}
   m_Layer: 5
-  m_Name: Label
+  m_Name: racelabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5389,6 +5390,85 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!1 &1969501841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1969501842}
+  - component: {fileID: 1969501844}
+  - component: {fileID: 1969501843}
+  m_Layer: 5
+  m_Name: racedesc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1969501842
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969501841}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 547495651}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 111.879, y: -26.920006}
+  m_SizeDelta: {x: 339.48962, y: 30.389244}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1969501843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969501841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: e3388e7868251ac4abc7175cbc240a00, type: 3}
+    m_FontSize: 12
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Your elf character has a variety of natural abilities, the result of thousands
+    of years of elven refinement.\r"
+--- !u!222 &1969501844
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969501841}
+  m_CullTransparentMesh: 0
 --- !u!1 &1992597995
 GameObject:
   m_ObjectHideFlags: 0
@@ -5788,7 +5868,7 @@ GameObject:
   - component: {fileID: 2009854178}
   - component: {fileID: 2009854177}
   m_Layer: 5
-  m_Name: Label
+  m_Name: classlabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5997,7 +6077,7 @@ GameObject:
   - component: {fileID: 2058344524}
   - component: {fileID: 2058344523}
   m_Layer: 5
-  m_Name: Text
+  m_Name: classdesc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
