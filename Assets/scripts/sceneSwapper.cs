@@ -8,6 +8,7 @@ public class SceneSwapper : MonoBehaviour
     //swaps scenes through the given string input
     public void sceneswap(string sceneToLoad)
     {
+        DontDestroyOnLoad(GameObject.Find("Playerdata"));
         SceneManager.LoadScene(sceneToLoad);
         if (sceneToLoad == "RollChar")
         {
