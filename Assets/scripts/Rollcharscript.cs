@@ -50,6 +50,7 @@ public class RollCharScript : MonoBehaviour
         Pdat.instance.Pl.playerclass = matching.name;
         Pdat.instance.Pl.hpdie = matching.hp;
         acupdate();
+        hpupdate();
     }
 
     //find matching race & updates it's corrosponding values
@@ -111,6 +112,7 @@ public class RollCharScript : MonoBehaviour
                 {
                     Pdat.instance.Pl.ability_con = total;
                     acupdate();
+                    hpupdate();
                     break;
                 }
             case "Int": Pdat.instance.Pl.ability_int = total; break;
@@ -121,17 +123,6 @@ public class RollCharScript : MonoBehaviour
                     break;
                 }
             case "Cha": Pdat.instance.Pl.ability_cha = total; break;
-        }
-
-        //Calculates Ac based of base 10 value plus modifier
-        if (stat == "Dex")
-            acupdate();
-        if (stat == "Con")
-        {
-            int hpsum = (Pdat.instance.Pl.hpdie + ((total - 10) / 2));
-            GameObject.Find("Hpval").GetComponent<Text>().text = hpsum.ToString();
-            Pdat.instance.Pl.currenthp = hpsum;
-            Pdat.instance.Pl.maxhp = hpsum;
         }
 
     }
@@ -183,5 +174,11 @@ public class RollCharScript : MonoBehaviour
 
     public void hpupdate()
     {
+        int hp = Pdat.instance.Pl.hpdie;
+        int conmod = (int)Pdat.instance.Pl.ability_con;
+        hp = (hp + ((conmod - 10) / 2));
+        Pdat.instance.Pl.currenthp = hp;
+        Pdat.instance.Pl.maxhp = hp;
+        GameObject.Find("Hpval").GetComponent<Text>().text = hp.ToString();
     }
 }
