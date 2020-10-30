@@ -8,6 +8,10 @@ public class RollCharScript : MonoBehaviour
     //initialization of race and playerclass lists
     static public List<race> races = new List<race>();
     static public List<playerclass> classplay = new List<playerclass>();
+    static public int hpmods;
+    static public int acmods; 
+
+
     //Adds all races & classes along with corresponding values for later usage
     public void initialization()
     {
@@ -44,9 +48,8 @@ public class RollCharScript : MonoBehaviour
         playerclass matching = (classplay.Find(x => x.name == nameMatch));
         GameObject.Find("classdesc").GetComponent<Text>().text = matching.description;
         GameObject.Find("Hpval").GetComponent<Text>().text = matching.hp.ToString();
-        PlayerData.instance.player.playerclass = matching.name;
-        PlayerData.instance.player.maxhp = matching.hp;
-        PlayerData.instance.player.currenthp = matching.hp;
+        Pdat.instance.Pl.playerclass = matching.name;
+        Pdat.instance.Pl.hpdie = matching.hp;
     }
 
     //find matching race & updates it's corrosponding values
@@ -58,22 +61,22 @@ public class RollCharScript : MonoBehaviour
         GameObject.Find("WSval").GetComponent<Text>().text = matching.walkspeed.ToString();
         GameObject.Find("RSval").GetComponent<Text>().text = matching.runspeed.ToString();
         GameObject.Find("JHval").GetComponent<Text>().text = matching.jumpheight.ToString();
-        PlayerData.instance.player.race = matching.name;
-        PlayerData.instance.player.walkspeed = matching.walkspeed;
-        PlayerData.instance.player.runspeed = matching.runspeed;
-        PlayerData.instance.player.jumpheight = matching.jumpheight;
+        Pdat.instance.Pl.race = matching.name;
+        Pdat.instance.Pl.walkspeed = matching.walkspeed;
+        Pdat.instance.Pl.runspeed = matching.runspeed;
+        Pdat.instance.Pl.jumpheight = matching.jumpheight;
     }
 
     //Detects namechanges and adds it to instance
     public void namechange()
     {
-        PlayerData.instance.player.character_name = GameObject.Find("Nameval").GetComponent<Text>().text;
+        Pdat.instance.Pl.character_name = GameObject.Find("Nameval").GetComponent<Text>().text;
     }
 
     //Same as namechange, except for alignment
     public void Alignment()
     {
-        PlayerData.instance.player.alignment = GameObject.Find("Alval").GetComponent<Text>().text;
+        Pdat.instance.Pl.alignment = GameObject.Find("Alval").GetComponent<Text>().text;
     }
 
     //Sorts rolls, totals the largest 2d6 & 2d4, to return total.
@@ -99,29 +102,32 @@ public class RollCharScript : MonoBehaviour
         {
             int AC = (10 + ((total - 10) / 2));
             GameObject.Find("ACval").GetComponent<Text>().text = AC.ToString();
-            PlayerData.instance.player.Armourclass = AC;
+            Pdat.instance.Pl.Armourclass = AC;
         }
         if (stat == "Con")
         {
-
+            int hpsum = (Pdat.instance.Pl.hpdie + ((total - 10) / 2));
+            GameObject.Find("Hpval").GetComponent<Text>().text = hpsum.ToString();
+            Pdat.instance.Pl.currenthp = hpsum;
+            Pdat.instance.Pl.maxhp = hpsum;
         }
 
         //Modifies instance stat based off of stat being rolled
         switch (stat)
         {
-            case "Str": PlayerData.instance.player.ability_str = total; break;
-            case "Dex": PlayerData.instance.player.ability_dex = total; break;
-            case "Con": PlayerData.instance.player.ability_con = total; break;
-            case "Int": PlayerData.instance.player.ability_int = total; break;
-            case "Wis": PlayerData.instance.player.ability_wis = total; break;
-            case "Cha": PlayerData.instance.player.ability_cha = total; break;
+            case "Str": Pdat.instance.Pl.ability_str = total; break;
+            case "Dex": Pdat.instance.Pl.ability_dex = total; break;
+            case "Con": Pdat.instance.Pl.ability_con = total; break;
+            case "Int": Pdat.instance.Pl.ability_int = total; break;
+            case "Wis": Pdat.instance.Pl.ability_wis = total; break;
+            case "Cha": Pdat.instance.Pl.ability_cha = total; break;
         }
     }
 
     //Converts the PlayerData instance into a json file, then outputs it to a window
     public void finalize()
     {
-        string json = JsonUtility.ToJson(PlayerData.instance.player);
+        string json = JsonUtility.ToJson(Pdat.instance.Pl);
         GameObject.Find("Jsonout").GetComponent<Text>().text = json;
     }
 
@@ -138,5 +144,15 @@ public class RollCharScript : MonoBehaviour
         public string name = "";
         public string description = "";
         public int hp = 0;
+    }
+
+    public class acupdate
+    {
+
+    }
+
+    public class hpupdate
+    {
+
     }
 }

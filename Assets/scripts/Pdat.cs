@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class PlayerData : MonoBehaviour
+public class Pdat : MonoBehaviour
 {
     [Serializable]
-    public class playerinfo
+    public class Pstat
     {
         //Ability scores
         public float ability_str;
@@ -24,7 +24,7 @@ public class PlayerData : MonoBehaviour
 
         //substats
         public int maxxp, currentxp;
-        public int maxhp, currenthp;
+        public int maxhp, currenthp, hpdie;
         public int Armourclass;
         public int walkspeed, runspeed, jumpheight;
 
@@ -32,8 +32,8 @@ public class PlayerData : MonoBehaviour
         public List<String> Inventory;
     }
 
-    public static PlayerData instance;
-    public playerinfo player;
+    public static Pdat instance;
+    public Pstat Pl;
 
     //singltion pattern
     public void Awake()
@@ -46,7 +46,7 @@ public class PlayerData : MonoBehaviour
         {
             DontDestroyOnLoad(this.gameObject);
             instance = this;
-            player = new playerinfo();
+            Pl = new Pstat();
         }
     }
 }
