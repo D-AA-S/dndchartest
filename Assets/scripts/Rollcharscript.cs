@@ -8,7 +8,6 @@ public class RollCharScript : MonoBehaviour
     //initialization of race and playerclass lists
     static public List<race> races = new List<race>();
     static public List<playerclass> classplay = new List<playerclass>();
-
     //Adds all races & classes along with corresponding values for later usage
     public void initialization()
     {
@@ -85,10 +84,10 @@ public class RollCharScript : MonoBehaviour
         int d4Total = 3;
 
         //list to store rolls
-        List<float> d4roll = new List<float>();
-        List<float> d6roll = new List<float>();
+        List<int> d4roll = new List<int>();
+        List<int> d6roll = new List<int>();
 
-        float total;
+        int total;
         for (int i = 0; i < d6Total; i++)
         {
             d6roll.Add(Random.Range(1, 7));
@@ -105,10 +104,13 @@ public class RollCharScript : MonoBehaviour
         //Calculates Ac based of base 10 value plus modifier
         if (stat == "Dex")
         {
-            string AC = (10 + ((total - 10) / 2)).ToString();
-            AC = (total <= 9) ? AC.Substring(0, 1) : AC.Substring(0, 2);
-            GameObject.Find("ACval").GetComponent<Text>().text = AC;
-            PlayerData.instance.player.Armourclass = int.Parse(AC);
+            int AC = (10 + ((total - 10) / 2));
+            GameObject.Find("ACval").GetComponent<Text>().text = AC.ToString();
+            PlayerData.instance.player.Armourclass = AC;
+        }
+        if (stat == "Con")
+        {
+
         }
 
         //Modifies instance stat based off of stat being rolled
