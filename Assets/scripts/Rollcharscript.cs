@@ -80,11 +80,9 @@ public class RollCharScript : MonoBehaviour
     public void statroller(string stat)
     {
         //Number of rolls for the dice
-        int d6Total = 3;
-        int d4Total = 3;
+        int d6Total = 4;
 
         //list to store rolls
-        List<int> d4roll = new List<int>();
         List<int> d6roll = new List<int>();
 
         int total;
@@ -92,13 +90,8 @@ public class RollCharScript : MonoBehaviour
         {
             d6roll.Add(Random.Range(1, 7));
         }
-        for (int i = 0; i < d4Total; i++)
-        {
-            d4roll.Add(Random.Range(1, 5));
-        }
         d6roll.Sort();
-        d4roll.Sort();
-        total = d6roll[1] + d6roll[2] + d4roll[1] + d4roll[2];
+        total = d6roll[1] + d6roll[2] + d6roll[3];
         GameObject.Find(stat).GetComponent<Text>().text = total.ToString();
 
         //Calculates Ac based of base 10 value plus modifier
