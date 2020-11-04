@@ -13,8 +13,12 @@ public class SceneSwapper : MonoBehaviour
         {
             //getting rollcharacter script to load during sceneswapping
             RollCharScript rcs = GameObject.Find("RollCharacter").GetComponent<RollCharScript>();
-            rcs.initialization(); 
+            rcs.initialization();
         }
+    }
+    public void nextcanvas()
+    {
+
     }
     public void quit()
     {

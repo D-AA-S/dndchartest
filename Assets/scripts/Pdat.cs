@@ -28,6 +28,7 @@ public class Pdat : MonoBehaviour
         public int Armourclass;
         public int walkspeed, runspeed, jumpheight;
 
+
         //inventory
         public List<String> Inventory;
     }
