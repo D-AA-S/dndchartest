@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class SceneSwapper : MonoBehaviour
 {
     public bool flip = true;
+    public GameObject RaceCanvas;
+    public GameObject Classcanvas;
     //swaps scenes through the given string input
     public void sceneswap(string sceneToLoad)
     {
@@ -24,8 +26,8 @@ public class SceneSwapper : MonoBehaviour
 
     public void nextcanvas()
     {
-        GameObject.FindGameObjectWithTag("GameController").SetActive(false);
-        GameObject.FindGameObjectWithTag("Class").SetActive(true);
+        RaceCanvas.SetActive(!flip);
+        Classcanvas.SetActive(flip);
         flip = !flip;
     }
 }
