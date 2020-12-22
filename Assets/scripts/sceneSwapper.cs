@@ -6,8 +6,16 @@ using UnityEngine.SceneManagement;
 public class SceneSwapper : MonoBehaviour
 {
     public bool flip = true;
-    public GameObject RaceCanvas;
-    public GameObject Classcanvas;
+    public GameObject activeCanvas;
+    public GameObject About;
+    public GameObject Settings;
+    public GameObject mainMenu;
+
+    public void Awake()
+    {
+        activeCanvas = mainMenu;
+    }
+
     //swaps scenes through the given string input
     public void sceneswap(string sceneToLoad)
     {
@@ -21,13 +29,14 @@ public class SceneSwapper : MonoBehaviour
     }
     public void quit()
     {
-        Debug.Log("If this were an application we would quit here");
+        Application.Quit();
     }
 
-    public void nextcanvas()
+    public void nextcanvas(GameObject canvas)
     {
-        RaceCanvas.SetActive(!flip);
-        Classcanvas.SetActive(flip);
-        flip = !flip;
+        activeCanvas.SetActive(false);
+        canvas.SetActive(true);
+        activeCanvas = canvas;
+
     }
 }

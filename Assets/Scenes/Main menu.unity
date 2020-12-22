@@ -715,11 +715,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1469834880}
-        m_MethodName: sceneswap
-        m_Mode: 5
+        m_MethodName: nextcanvas
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: About
@@ -1234,8 +1234,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flip: 1
-  RaceCanvas: {fileID: 0}
-  Classcanvas: {fileID: 0}
+  activeCanvas: {fileID: 0}
+  About: {fileID: 0}
+  Settings: {fileID: 0}
+  mainMenu: {fileID: 0}
 --- !u!4 &1469834881
 Transform:
   m_ObjectHideFlags: 0
