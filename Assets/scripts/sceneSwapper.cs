@@ -37,6 +37,5 @@ public class SceneSwapper : MonoBehaviour
         activeCanvas.SetActive(false);
         canvas.SetActive(true);
         activeCanvas = canvas;
-
     }
 }
