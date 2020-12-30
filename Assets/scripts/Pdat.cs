@@ -9,24 +9,23 @@ public class Pdat : MonoBehaviour
     public class Pstat
     {
         //Ability scores
-        public float ability_str;
-        public float ability_dex;
-        public float ability_con;
-        public float ability_int;
-        public float ability_wis;
-        public float ability_cha;
+        public float abilityStr;
+        public float abilityDex;
+        public float abilityCon;
+        public float abilityInt;
+        public float abilityWis;
+        public float abilityCha;
 
         //character choices
-        public string character_name;
+        public string characterName;
         public string race;
-        public string playerclass;
+        public string playerClass;
         public string alignment;
 
         //substats
-        public int maxxp, currentxp;
-        public int maxhp, currenthp, hpdie;
-        public int Armourclass;
-        public int walkspeed, runspeed, jumpheight;
+        public int hp;
+        public int armorClass;
+        public int walkSpeed;
 
 
         //inventory
