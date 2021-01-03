@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneSwapper : MonoBehaviour
 {
     public bool flip = true;
-    public GameObject activeCanvas;
+    private GameObject activeCanvas;
     public GameObject About;
     public GameObject Settings;
     public GameObject mainMenu;

@@ -6,32 +6,37 @@ using UnityEngine;
 public class UiManage : MonoBehaviour
 {
     public Text description;
-    public Text rollchoice; 
+    public GameObject rollchoice;
+    private int selection;
     void Start()
     {
-        textdescription("4d6 Lowest Dropped(Default)");
+        rollchoice.GetComponent<Dropdown>().value = Pdat.instance.Pl.abilityChoice;
     }
 
     public void settingchanged()
     {
-        textdescription(rollchoice.text);
+        selection = rollchoice.GetComponent<Dropdown>().value;
+        textdescription(selection);
     }
 
-    private void textdescription(string rollChoice)
+    private void textdescription(int rollChoice)
     {
         switch (rollChoice)
         {
-            case "4d6 Lowest Dropped(Default)":
+            case 0:
                 description.text = "Rolls 4 six-sided dice, and drops the lowest roll" +
                     " before totalling, more likely to give higher rolls";
+                Pdat.instance.Pl.abilityChoice = rollChoice;
                 break;
-            case "3d6 Nothing Dropped":
+            case 1:
                 description.text = "Rolls 3 six-sided dice and totalls the values at " +
                     "face value, comparatively lower totals than 4d6 lowest dropped";
+                Pdat.instance.Pl.abilityChoice = rollChoice;
                 break;
-            case "15-8 Random Stat Distribution":
+            case 2:
                 description.text = "Uses fixed numbers to allocate stats, " +
                     "distributing the numbers 15, 14, 13, 12, 10, 8, to randomly selected stats.";
+                Pdat.instance.Pl.abilityChoice = rollChoice;
                 break;
         }
     }

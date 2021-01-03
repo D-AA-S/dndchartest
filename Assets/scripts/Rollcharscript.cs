@@ -8,8 +8,11 @@ public class RollCharScript : MonoBehaviour
     //initialization of race and playerclass lists
     static public List<race> races = new List<race>();
     static public List<playerclass> classplay = new List<playerclass>();
-    static public int hpmods;
-    static public int acmods;
+    static private int hpmods;
+    static private int acmods;
+    private Queue<int> rolledStats;
+    private int randompoint;
+    static private int abilityNum = 6; 
 
 
 
@@ -76,55 +79,72 @@ public class RollCharScript : MonoBehaviour
     }
 
     //Sorts rolls, totals the largest 2d6 & 2d4, to return total.
-    public void statroller(string stat)
+    public void statRoll(int diceNum)
     {
-        //Number of rolls for the dice
-        int d6Total = 4;
-
-        //list to store rolls
-        List<int> d6roll = new List<int>();
-
-        int total;
-        for (int i = 0; i < d6Total; i++)
+        for (int i = 0; i < abilityNum; i++)
         {
-            d6roll.Add(Random.Range(1, 7));
+            //list to store rolls
+            List<int> d6roll = new List<int>();
+
+            int total;
+            for (int j = 0; j < diceNum; j++)
+            {
+                d6roll.Add(Random.Range(1, 7));
+            }
+            d6roll.Sort();
+            total = d6roll[diceNum-1] + d6roll[diceNum-2] + d6roll[diceNum-3];
+            rolledStats.Enqueue(total);
         }
-        d6roll.Sort();
-        total = d6roll[1] + d6roll[2] + d6roll[3];
-        GameObject.Find(stat).GetComponent<Text>().text = total.ToString();
-
-        //Modifies instance stat based off of stat being rolled
-        switch (stat)
+        foreach (int numbers in rolledStats)
         {
-            case "Str": Pdat.instance.Pl.abilityStr = total; break;
-            case "Dex":
-                {
-                    Pdat.instance.Pl.abilityDex = total;
-                    acCalc();
-                    break;
-                }
-            case "Con":
-                {
-                    Pdat.instance.Pl.abilityCon = total;
-                    acCalc();
-                    hpCalc();
-                    break;
-                }
-            case "Int": Pdat.instance.Pl.abilityInt = total; break;
-            case "Wis":
-                {
-                    Pdat.instance.Pl.abilityWis = total;
-                    acCalc();
-                    break;
-                }
-            case "Cha": Pdat.instance.Pl.abilityCha = total; break;
+            Debug.Log(numbers);
+        }
+    }
+
+
+    public void statRoll()
+    {
+        List<int> dist = new List<int>();
+        dist.Add(15);
+        dist.Add(14);
+        dist.Add(13);
+        dist.Add(12);
+        dist.Add(10);
+        dist.Add(8);
+        for (int i = 0; i < abilityNum; i++)
+        {
+            randompoint = Random.Range(0, dist.Count-1);
+            rolledStats.Enqueue(dist[randompoint]);
+            dist.RemoveAt(randompoint);
+        }
+        foreach (int numbers in rolledStats)
+        {
+            Debug.Log(numbers);
+        }
+    }
+
+    public void statrolls()
+    {
+        rolledStats = new Queue<int>();
+        rolledStats.Clear();
+        switch (Pdat.instance.Pl.abilityChoice)
+        {
+            case 0:
+                statRoll(4);
+                break;
+            case 1:
+                statRoll(3);
+                break;
+            case 2:
+                statRoll();
+                break;
         }
     }
 
     //Converts the PlayerData instance into a json file, then outputs it to a window
     public void finalize()
     {
-
+        statrolls();
         acCalc();
     }
 

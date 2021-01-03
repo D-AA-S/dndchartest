@@ -27,6 +27,7 @@ public class Pdat : MonoBehaviour
         public int armorClass;
         public int walkSpeed;
 
+        public int abilityChoice;
 
         //inventory
         public List<String> Inventory;
