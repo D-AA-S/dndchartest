@@ -8,45 +8,49 @@ public class RollCharScript : MonoBehaviour
     //initialization of race and playerclass lists
     static public List<race> races = new List<race>();
     static public List<playerclass> classplay = new List<playerclass>();
+    static private race[] raceOptions = new race[9];
+    static private playerclass[] classoptions = new playerclass[12];
     static private int hpmods;
     static private int acmods;
-    private int alignmentOp;
+    private int alignVal;
+    private int charVal;
+    private int raceVal;
     private Queue<int> rolledStats;
     private int randompoint;
     static private int abilityNum = 6;
     static private string[] alignmentoptions;
 
-    public GameObject alignmentlist;
+    public GameObject charAlign;
+    public GameObject charClass;
+    public GameObject charRace;
 
 
 
     //Adds all races & classes along with corresponding values for later usage
     public void initialization()
     {
-        races.Add(new race() { name = "Character's  Race?", walkspeed = 0});
-        races.Add(new race() { name = "Dragonborn", walkspeed = 30});
-        races.Add(new race() { name = "Dwarf", walkspeed = 25});
-        races.Add(new race() { name = "Elf", walkspeed = 30});
-        races.Add(new race() { name = "Gnome", walkspeed = 25});
-        races.Add(new race() { name = "Half-Elf", walkspeed = 30});
-        races.Add(new race() { name = "Half-Orc", walkspeed = 30});
-        races.Add(new race() { name = "Halfling", walkspeed = 25});
-        races.Add(new race() { name = "Human", walkspeed = 30});
-        races.Add(new race() { name = "Tiefling", walkspeed = 30});
+        raceOptions[0] = new race() { name = "Dragonborn", walkspeed = 30 };
+        raceOptions[1] = new race() { name = "Dwarf", walkspeed = 25 };
+        raceOptions[2] = new race() { name = "Elf", walkspeed = 30 };
+        raceOptions[3] = new race() { name = "Gnome", walkspeed = 25 };
+        raceOptions[4] = new race() { name = "Half-Elf", walkspeed = 30 };
+        raceOptions[5] = new race() { name = "Half-Orc", walkspeed = 30 };
+        raceOptions[6] = new race() { name = "Halfling", walkspeed = 25 };
+        raceOptions[7] = new race() { name = "Human", walkspeed = 30 };
+        raceOptions[8] = new race() { name = "Tiefling", walkspeed = 30 };
 
-        classplay.Add(new playerclass() { name = "Character's  Class?", hp = 0 });
-        classplay.Add(new playerclass() { name = "Barbarian", hp = 12 });
-        classplay.Add(new playerclass() { name = "Paladin",  hp = 10 });
-        classplay.Add(new playerclass() { name = "Ranger",  hp = 10 });
-        classplay.Add(new playerclass() { name = "Fighter", hp = 10 });
-        classplay.Add(new playerclass() { name = "Bard",  hp = 8 });
-        classplay.Add(new playerclass() { name = "Cleric",  hp = 8 });
-        classplay.Add(new playerclass() { name = "Druid", hp = 8 });
-        classplay.Add(new playerclass() { name = "Monk",  hp = 8 });
-        classplay.Add(new playerclass() { name = "Rogue",  hp = 8 });
-        classplay.Add(new playerclass() { name = "Warlock", hp = 8 });
-        classplay.Add(new playerclass() { name = "Sorcerer", hp = 6 });
-        classplay.Add(new playerclass() { name = "Wizard", hp = 6 });
+        classoptions[0] = new playerclass() { name = "Barbarian", hp = 12 };
+        classoptions[1] = new playerclass() { name = "Paladin",  hp = 10 };
+        classoptions[2] = new playerclass() { name = "Ranger",  hp = 10 };
+        classoptions[3] = new playerclass() { name = "Fighter", hp = 10 };
+        classoptions[4] = new playerclass() { name = "Bard",  hp = 8 };
+        classoptions[5] = new playerclass() { name = "Cleric",  hp = 8 };
+        classoptions[6] = new playerclass() { name = "Druid", hp = 8 };
+        classoptions[7] = new playerclass() { name = "Monk",  hp = 8 };
+        classoptions[8] = new playerclass() { name = "Rogue",  hp = 8 };
+        classoptions[9] = new playerclass() { name = "Warlock", hp = 8 };
+        classoptions[10] = new playerclass() { name = "Sorcerer", hp = 6 };
+        classoptions[11] = new playerclass() { name = "Wizard", hp = 6 };
         alignmentoptions = new string[] {"Lawful Good","Lawful Neutral","Lawful Evil","Neutral Good"
             ,"True Neutral","Neutral Evil","Chaotic Good","Chaotic Neutral","Chaotic Evil"};
     }
@@ -54,12 +58,20 @@ public class RollCharScript : MonoBehaviour
     //find matching class & updates it's corresponding values
     public void characterclass()
     {
-        string nameMatch = GameObject.Find("classlabel").GetComponent<Text>().text;
-        playerclass matching = (classplay.Find(x => x.name == nameMatch));
-        Pdat.instance.Pl.playerClass = matching.name;
-        Pdat.instance.Pl.hp = matching.hp;
-        acCalc();
-        hpCalc();
+        charVal = charClass.GetComponent<Dropdown>().value;
+        if (charVal != 0)
+        {
+            Pdat.instance.Pl.playerClass = classoptions[charVal - 1].name;
+            Pdat.instance.Pl.hp = classoptions[charVal - 1].hp;
+        }
+        else
+        {
+            randompoint = Random.Range(0,11);
+            Pdat.instance.Pl.playerClass = classoptions[randompoint].name;
+            Pdat.instance.Pl.hp = classoptions[randompoint].hp;
+        }
+        //acCalc();
+        //hpCalc();
     }
 
     //find matching race & updates it's corrosponding values
@@ -81,16 +93,16 @@ public class RollCharScript : MonoBehaviour
     //Same as namechange, except for alignment
     public void Alignment()
     {
-        alignmentOp = alignmentlist.GetComponent<Dropdown>().value;
-        if (alignmentOp != 0)
+        alignVal = charAlign.GetComponent<Dropdown>().value;
+        if (alignVal != 0)
         {
-            Pdat.instance.Pl.alignment = alignmentoptions[alignmentOp-1];
+            Pdat.instance.Pl.alignment = alignmentoptions[alignVal-1];
         }
         else
         {
             randompoint = Random.Range(0, 9);
             Pdat.instance.Pl.alignment = alignmentoptions[randompoint];
-            alignmentlist.GetComponent<Dropdown>().value = randompoint;
+            charAlign.GetComponent<Dropdown>().value = randompoint;
         }
     }
 
