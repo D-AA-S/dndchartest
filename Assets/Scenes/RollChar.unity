@@ -1245,6 +1245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f71a56e62c5c8e488d94fe56784597d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alignmentlist: {fileID: 1109303888}
 --- !u!4 &296819493
 Transform:
   m_ObjectHideFlags: 0
@@ -3815,7 +3816,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flip: 1
-  activeCanvas: {fileID: 0}
   About: {fileID: 0}
   Settings: {fileID: 0}
   mainMenu: {fileID: 0}
@@ -4729,7 +4729,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 296819492}
-        m_MethodName: finalize
+        m_MethodName: generate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

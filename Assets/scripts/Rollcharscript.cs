@@ -10,9 +10,13 @@ public class RollCharScript : MonoBehaviour
     static public List<playerclass> classplay = new List<playerclass>();
     static private int hpmods;
     static private int acmods;
+    private int alignmentOp;
     private Queue<int> rolledStats;
     private int randompoint;
-    static private int abilityNum = 6; 
+    static private int abilityNum = 6;
+    static private string[] alignmentoptions;
+
+    public GameObject alignmentlist;
 
 
 
@@ -32,17 +36,19 @@ public class RollCharScript : MonoBehaviour
 
         classplay.Add(new playerclass() { name = "Character's  Class?", hp = 0 });
         classplay.Add(new playerclass() { name = "Barbarian", hp = 12 });
+        classplay.Add(new playerclass() { name = "Paladin",  hp = 10 });
+        classplay.Add(new playerclass() { name = "Ranger",  hp = 10 });
+        classplay.Add(new playerclass() { name = "Fighter", hp = 10 });
         classplay.Add(new playerclass() { name = "Bard",  hp = 8 });
         classplay.Add(new playerclass() { name = "Cleric",  hp = 8 });
         classplay.Add(new playerclass() { name = "Druid", hp = 8 });
-        classplay.Add(new playerclass() { name = "Fighter",  hp = 10 });
         classplay.Add(new playerclass() { name = "Monk",  hp = 8 });
-        classplay.Add(new playerclass() { name = "Paladin",  hp = 10 });
-        classplay.Add(new playerclass() { name = "Ranger",  hp = 10 });
         classplay.Add(new playerclass() { name = "Rogue",  hp = 8 });
-        classplay.Add(new playerclass() { name = "Sorcerer", hp = 6 });
         classplay.Add(new playerclass() { name = "Warlock", hp = 8 });
+        classplay.Add(new playerclass() { name = "Sorcerer", hp = 6 });
         classplay.Add(new playerclass() { name = "Wizard", hp = 6 });
+        alignmentoptions = new string[] {"Lawful Good","Lawful Neutral","Lawful Evil","Neutral Good"
+            ,"True Neutral","Neutral Evil","Chaotic Good","Chaotic Neutral","Chaotic Evil"};
     }
 
     //find matching class & updates it's corresponding values
@@ -75,7 +81,17 @@ public class RollCharScript : MonoBehaviour
     //Same as namechange, except for alignment
     public void Alignment()
     {
-        Pdat.instance.Pl.alignment = GameObject.Find("Alval").GetComponent<Text>().text;
+        alignmentOp = alignmentlist.GetComponent<Dropdown>().value;
+        if (alignmentOp != 0)
+        {
+            Pdat.instance.Pl.alignment = alignmentoptions[alignmentOp-1];
+        }
+        else
+        {
+            randompoint = Random.Range(0, 9);
+            Pdat.instance.Pl.alignment = alignmentoptions[randompoint];
+            alignmentlist.GetComponent<Dropdown>().value = randompoint;
+        }
     }
 
     //Sorts rolls, totals the largest 2d6 & 2d4, to return total.
@@ -95,10 +111,6 @@ public class RollCharScript : MonoBehaviour
             total = d6roll[diceNum-1] + d6roll[diceNum-2] + d6roll[diceNum-3];
             rolledStats.Enqueue(total);
         }
-        foreach (int numbers in rolledStats)
-        {
-            Debug.Log(numbers);
-        }
     }
 
 
@@ -113,15 +125,12 @@ public class RollCharScript : MonoBehaviour
         dist.Add(8);
         for (int i = 0; i < abilityNum; i++)
         {
-            randompoint = Random.Range(0, dist.Count-1);
+            randompoint = Random.Range(0, dist.Count);
             rolledStats.Enqueue(dist[randompoint]);
             dist.RemoveAt(randompoint);
         }
-        foreach (int numbers in rolledStats)
-        {
-            Debug.Log(numbers);
-        }
     }
+
 
     public void statrolls()
     {
@@ -139,13 +148,20 @@ public class RollCharScript : MonoBehaviour
                 statRoll();
                 break;
         }
+        Pdat.instance.Pl.abilityStr = rolledStats.Dequeue();
+        Pdat.instance.Pl.abilityDex = rolledStats.Dequeue();
+        Pdat.instance.Pl.abilityCon = rolledStats.Dequeue();
+        Pdat.instance.Pl.abilityInt = rolledStats.Dequeue();
+        Pdat.instance.Pl.abilityWis = rolledStats.Dequeue();
+        Pdat.instance.Pl.abilityCha = rolledStats.Dequeue();
     }
 
     //Converts the PlayerData instance into a json file, then outputs it to a window
-    public void finalize()
+    public void generate()
     {
         statrolls();
         acCalc();
+        Alignment();
     }
 
     public class race
