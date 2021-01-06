@@ -29,12 +29,27 @@ public class Pdat : MonoBehaviour
 
         public int abilityChoice;
 
-        //inventory
-        public List<String> Inventory;
+        public void clear()
+        {
+            abilityStr = 0;
+            abilityDex = 0;
+            abilityCon = 0;
+            abilityInt = 0;
+            abilityWis = 0;
+            abilityCha = 0;
+            characterName = "";
+            race = "";
+            playerClass = "";
+            alignment = "";
+            hp = 0;
+            armorClass = 0;
+            walkSpeed = 0;
+        }
     }
 
     public static Pdat instance;
     public Pstat Pl;
+
 
     //singltion pattern
     public void Awake()
