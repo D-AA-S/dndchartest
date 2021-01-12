@@ -98,14 +98,13 @@ public class RollCharScript : MonoBehaviour
     //Detects namechanges and adds it to instance
     public void nameGen(int firstNL, int lastNL)
     {
-        //nameVal = charName.GetComponent<Text>
+        nameVal = charName.GetComponent<Text>().text;
         if (nameVal == "")
         {
-
         }
         else
         {
-
+            Pdat.Inst.Pl.characterName = nameVal;
         }
     }
 
