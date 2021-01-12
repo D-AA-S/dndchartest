@@ -28,6 +28,7 @@ public class Pdat : MonoBehaviour
         public int walkSpeed;
 
         public int abilityChoice;
+        public bool noClass;
 
         public void clear()
         {
@@ -47,21 +48,21 @@ public class Pdat : MonoBehaviour
         }
     }
 
-    public static Pdat instance;
+    public static Pdat Inst;
     public Pstat Pl;
 
 
     //singltion pattern
     public void Awake()
     {
-        if (instance != null && instance != this)
+        if (Inst != null && Inst != this)
         {
             Destroy(this.gameObject);
         }
         else
         {
             DontDestroyOnLoad(this.gameObject);
-            instance = this;
+            Inst = this;
             Pl = new Pstat();
         }
     }

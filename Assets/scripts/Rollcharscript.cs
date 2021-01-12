@@ -58,14 +58,18 @@ public class RollCharScript : MonoBehaviour
         charVal = charClass.GetComponent<Dropdown>().value;
         if (charVal != 0)
         {
-            Pdat.instance.Pl.playerClass = classoptions[charVal-1].name;
-            Pdat.instance.Pl.hp = classoptions[charVal-1].hp;
+            Pdat.Inst.Pl.playerClass = classoptions[charVal - 1].name;
+            Pdat.Inst.Pl.hp = classoptions[charVal - 1].hp;
+        }
+        else if (charVal == 1)
+        {
+            Pdat.Inst.Pl.noClass = true;
         }
         else
         {
-            randompoint = Random.Range(0,11);
-            Pdat.instance.Pl.playerClass = classoptions[randompoint].name;
-            Pdat.instance.Pl.hp = classoptions[randompoint].hp;
+            randompoint = Random.Range(0, 11);
+            Pdat.Inst.Pl.playerClass = classoptions[randompoint].name;
+            Pdat.Inst.Pl.hp = classoptions[randompoint].hp;
             charClass.GetComponent<Dropdown>().value = ++randompoint;
         }
     }
@@ -76,15 +80,15 @@ public class RollCharScript : MonoBehaviour
         raceVal = charRace.GetComponent<Dropdown>().value;
         if (raceVal != 0)
         {
-            Pdat.instance.Pl.race = raceOptions[raceVal-1].name;
-            Pdat.instance.Pl.walkSpeed = raceOptions[raceVal-1].walkspeed;
+            Pdat.Inst.Pl.race = raceOptions[raceVal-1].name;
+            Pdat.Inst.Pl.walkSpeed = raceOptions[raceVal-1].walkspeed;
             wsDis.GetComponent<Text>().text = raceOptions[raceVal-1].walkspeed.ToString();
         }
         else
         {
             randompoint = Random.Range(0,9);
-            Pdat.instance.Pl.race = raceOptions[randompoint].name;
-            Pdat.instance.Pl.walkSpeed = raceOptions[randompoint].walkspeed;
+            Pdat.Inst.Pl.race = raceOptions[randompoint].name;
+            Pdat.Inst.Pl.walkSpeed = raceOptions[randompoint].walkspeed;
             wsDis.GetComponent<Text>().text = raceOptions[randompoint].walkspeed.ToString();
             charRace.GetComponent<Dropdown>().value = ++randompoint;
         }
@@ -93,7 +97,7 @@ public class RollCharScript : MonoBehaviour
     //Detects namechanges and adds it to instance
     public void namechange()
     {
-        Pdat.instance.Pl.characterName = GameObject.Find("Nameval").GetComponent<Text>().text;
+        Pdat.Inst.Pl.characterName = GameObject.Find("Nameval").GetComponent<Text>().text;
     }
 
     //Same as namechange, except for alignment
@@ -102,12 +106,12 @@ public class RollCharScript : MonoBehaviour
         alignVal = charAlign.GetComponent<Dropdown>().value;
         if (alignVal != 0)
         {
-            Pdat.instance.Pl.alignment = alignmentoptions[alignVal-1];
+            Pdat.Inst.Pl.alignment = alignmentoptions[alignVal-1];
         }
         else
         {
             randompoint = Random.Range(0, 9);
-            Pdat.instance.Pl.alignment = alignmentoptions[randompoint];
+            Pdat.Inst.Pl.alignment = alignmentoptions[randompoint];
             charAlign.GetComponent<Dropdown>().value = randompoint;
         }
     }
@@ -154,7 +158,7 @@ public class RollCharScript : MonoBehaviour
     {
         rolledStats = new Queue<int>();
         rolledStats.Clear();
-        switch (Pdat.instance.Pl.abilityChoice)
+        switch (Pdat.Inst.Pl.abilityChoice)
         {
             case 0:
                 statRoll(4);
@@ -166,18 +170,23 @@ public class RollCharScript : MonoBehaviour
                 statRoll();
                 break;
         }
-        Pdat.instance.Pl.abilityStr = rolledStats.Dequeue();
-        strDis.GetComponent<Text>().text = Pdat.instance.Pl.abilityStr.ToString();
-        Pdat.instance.Pl.abilityDex = rolledStats.Dequeue();
-        dexDis.GetComponent<Text>().text = Pdat.instance.Pl.abilityDex.ToString();
-        Pdat.instance.Pl.abilityCon = rolledStats.Dequeue();
-        conDis.GetComponent<Text>().text = Pdat.instance.Pl.abilityCon.ToString();
-        Pdat.instance.Pl.abilityInt = rolledStats.Dequeue();
-        intDis.GetComponent<Text>().text = Pdat.instance.Pl.abilityInt.ToString();
-        Pdat.instance.Pl.abilityWis = rolledStats.Dequeue();
-        wisDis.GetComponent<Text>().text = Pdat.instance.Pl.abilityWis.ToString();
-        Pdat.instance.Pl.abilityCha = rolledStats.Dequeue();
-        chaDis.GetComponent<Text>().text = Pdat.instance.Pl.abilityCha.ToString();
+        Pdat.Inst.Pl.abilityStr = rolledStats.Dequeue();
+        strDis.GetComponent<Text>().text = Pdat.Inst.Pl.abilityStr.ToString();
+        Pdat.Inst.Pl.abilityDex = rolledStats.Dequeue();
+        dexDis.GetComponent<Text>().text = Pdat.Inst.Pl.abilityDex.ToString();
+        Pdat.Inst.Pl.abilityCon = rolledStats.Dequeue();
+        conDis.GetComponent<Text>().text = Pdat.Inst.Pl.abilityCon.ToString();
+        Pdat.Inst.Pl.abilityInt = rolledStats.Dequeue();
+        intDis.GetComponent<Text>().text = Pdat.Inst.Pl.abilityInt.ToString();
+        Pdat.Inst.Pl.abilityWis = rolledStats.Dequeue();
+        wisDis.GetComponent<Text>().text = Pdat.Inst.Pl.abilityWis.ToString();
+        Pdat.Inst.Pl.abilityCha = rolledStats.Dequeue();
+        chaDis.GetComponent<Text>().text = Pdat.Inst.Pl.abilityCha.ToString();
+    }
+
+    public void sentenceGenrate()
+    {
+
     }
 
     //Converts the PlayerData instance into a json file, then outputs it to a window
@@ -189,11 +198,12 @@ public class RollCharScript : MonoBehaviour
         Alignment();
         hpCalc();
         acCalc();
+        sentenceGenrate();
     }
 
     public void reset()
     {
-        Pdat.instance.Pl.clear();
+        Pdat.Inst.Pl.clear();
         charAlign.GetComponent<Dropdown>().value = 0;
         charClass.GetComponent<Dropdown>().value = 0;
         charRace.GetComponent<Dropdown>().value = 0;
@@ -222,28 +232,28 @@ public class RollCharScript : MonoBehaviour
     public void acCalc()
     {
         int AC = 0;
-        string pclass = Pdat.instance.Pl.playerClass;
-        int dexmod = (int)Pdat.instance.Pl.abilityDex;
+        string pclass = Pdat.Inst.Pl.playerClass;
+        int dexmod = (int)Pdat.Inst.Pl.abilityDex;
 
         if (pclass == "Barbarian")
         {
-            int conmod = (int)Pdat.instance.Pl.abilityCon;
+            int conmod = (int)Pdat.Inst.Pl.abilityCon;
             AC = (10 + (((conmod - 10) / 2)) + ((dexmod - 10) / 2));
         }
         else if (pclass == "Monk")
         {
-            int wismod = (int)Pdat.instance.Pl.abilityWis;
+            int wismod = (int)Pdat.Inst.Pl.abilityWis;
             AC = (10 + ((wismod - 10) / 2) + ((dexmod - 10) / 2));
         }
         else
             AC = (10 + ((dexmod - 10) / 2));
-        Pdat.instance.Pl.armorClass = AC;
+        Pdat.Inst.Pl.armorClass = AC;
         acDis.GetComponent<Text>().text = AC.ToString();
     }
 
     public void hpCalc()
     {
-        Pdat.instance.Pl.hp = (Pdat.instance.Pl.hp + (((int)Pdat.instance.Pl.abilityCon - 10) / 2));
-        hpDis.GetComponent<Text>().text = Pdat.instance.Pl.hp.ToString();
+        Pdat.Inst.Pl.hp = (Pdat.Inst.Pl.hp + (((int)Pdat.Inst.Pl.abilityCon - 10) / 2));
+        hpDis.GetComponent<Text>().text = Pdat.Inst.Pl.hp.ToString();
     }
 }
