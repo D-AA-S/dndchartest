@@ -981,6 +981,8 @@ MonoBehaviour:
     m_Options:
     - m_Text: Character's  Class?
       m_Image: {fileID: 0}
+    - m_Text: No Class
+      m_Image: {fileID: 0}
     - m_Text: Barbarian
       m_Image: {fileID: 0}
     - m_Text: Paladin
@@ -1156,6 +1158,7 @@ MonoBehaviour:
   charAlign: {fileID: 1109303888}
   charClass: {fileID: 232058317}
   charRace: {fileID: 547495650}
+  charName: {fileID: 1381456913}
   wsDis: {fileID: 397156211}
   hpDis: {fileID: 424941723}
   acDis: {fileID: 902278030}
@@ -4177,18 +4180,7 @@ MonoBehaviour:
   m_CharacterLimit: 50
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 296819492}
-        m_MethodName: namechange
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

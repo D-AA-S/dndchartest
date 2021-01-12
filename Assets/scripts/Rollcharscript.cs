@@ -8,17 +8,14 @@ public class RollCharScript : MonoBehaviour
     //initialization of race and playerclass lists
     static private race[] raceOptions = new race[9];
     static private playerclass[] classoptions = new playerclass[12];
-    static private int hpmods;
-    static private int acmods;
-    private int alignVal;
-    private int charVal;
-    private int raceVal;
-    private Queue<int> rolledStats;
+    static private string[] alignmentoptions, consonants, vowels;
+    private int alignVal, charVal, raceVal;
     private int randompoint;
+    private Queue<int> rolledStats;
     static private int abilityNum = 6;
-    static private string[] alignmentoptions;
+    private string nameVal;
 
-    public GameObject charAlign, charClass, charRace;
+    public GameObject charAlign, charClass, charRace, charName;
     public Text wsDis,hpDis,acDis; //Text windows that display the hp, walkspeed, ac values
     public Text strDis, dexDis, conDis, intDis, wisDis, chaDis; //Text windows that display the stat values
 
@@ -48,8 +45,12 @@ public class RollCharScript : MonoBehaviour
         classoptions[9] = new playerclass() { name = "Warlock", hp = 8 };
         classoptions[10] = new playerclass() { name = "Sorcerer", hp = 6 };
         classoptions[11] = new playerclass() { name = "Wizard", hp = 6 };
-        alignmentoptions = new string[] {"Lawful Good","Lawful Neutral","Lawful Evil","Neutral Good"
+        alignmentoptions = new string[] {"Lawful Good","Lawful Neutral","Lawful Evil","N" +
+            "eutral Good"
             ,"True Neutral","Neutral Evil","Chaotic Good","Chaotic Neutral","Chaotic Evil"};
+        vowels = new string[] { "a", "e", "i", "o", "u", "ae", "y" };
+        consonants = new string[] { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "l",
+            "n", "p", "q", "r", "s", "sh", "zh", "t", "v", "w", "x" };
     }
 
     //find matching class & updates it's corresponding values
@@ -95,9 +96,17 @@ public class RollCharScript : MonoBehaviour
     }
 
     //Detects namechanges and adds it to instance
-    public void nameGen()
+    public void nameGen(int firstNL, int lastNL)
     {
-        Pdat.Inst.Pl.characterName = GameObject.Find("Nameval").GetComponent<Text>().text;
+        //nameVal = charName.GetComponent<Text>
+        if (nameVal == "")
+        {
+
+        }
+        else
+        {
+
+        }
     }
 
     //Same as namechange, except for alignment
