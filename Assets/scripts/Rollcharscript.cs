@@ -56,7 +56,7 @@ public class RollCharScript : MonoBehaviour
     public void characterclass()
     {
         charVal = charClass.GetComponent<Dropdown>().value;
-        if (charVal != 0)
+        if (charVal != 0 && charVal != 1)
         {
             Pdat.Inst.Pl.playerClass = classoptions[charVal - 1].name;
             Pdat.Inst.Pl.hp = classoptions[charVal - 1].hp;
@@ -80,13 +80,13 @@ public class RollCharScript : MonoBehaviour
         raceVal = charRace.GetComponent<Dropdown>().value;
         if (raceVal != 0)
         {
-            Pdat.Inst.Pl.race = raceOptions[raceVal-1].name;
-            Pdat.Inst.Pl.walkSpeed = raceOptions[raceVal-1].walkspeed;
-            wsDis.GetComponent<Text>().text = raceOptions[raceVal-1].walkspeed.ToString();
+            Pdat.Inst.Pl.race = raceOptions[raceVal - 1].name;
+            Pdat.Inst.Pl.walkSpeed = raceOptions[raceVal - 1].walkspeed;
+            wsDis.GetComponent<Text>().text = raceOptions[raceVal - 1].walkspeed.ToString();
         }
         else
         {
-            randompoint = Random.Range(0,9);
+            randompoint = Random.Range(0, 9);
             Pdat.Inst.Pl.race = raceOptions[randompoint].name;
             Pdat.Inst.Pl.walkSpeed = raceOptions[randompoint].walkspeed;
             wsDis.GetComponent<Text>().text = raceOptions[randompoint].walkspeed.ToString();
@@ -95,7 +95,7 @@ public class RollCharScript : MonoBehaviour
     }
 
     //Detects namechanges and adds it to instance
-    public void namechange()
+    public void nameGen()
     {
         Pdat.Inst.Pl.characterName = GameObject.Find("Nameval").GetComponent<Text>().text;
     }
