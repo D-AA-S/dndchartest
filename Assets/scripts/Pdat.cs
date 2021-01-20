@@ -26,6 +26,7 @@ public class Pdat : MonoBehaviour
         public int hp;
         public int armorClass;
         public int walkSpeed;
+        public int raceAge;
 
         public int abilityChoice;
         public bool noClass;

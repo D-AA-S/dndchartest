@@ -26,15 +26,15 @@ public class RollCharScript : MonoBehaviour
     private void Start()
     {
         names = nameFile.text.Split('\n');
-        raceOptions[0] = new race() { name = "Dragonborn", walkspeed = 30, upperAge =  };
-        raceOptions[1] = new race() { name = "Dwarf", walkspeed = 25, upperAge =   };
-        raceOptions[2] = new race() { name = "Elf", walkspeed = 30, upperAge =   };
-        raceOptions[3] = new race() { name = "Gnome", walkspeed = 25, upperAge =   };
-        raceOptions[4] = new race() { name = "Half-Elf", walkspeed = 30, upperAge =   };
-        raceOptions[5] = new race() { name = "Half-Orc", walkspeed = 30, upperAge =   };
-        raceOptions[6] = new race() { name = "Halfling", walkspeed = 25, upperAge =   };
-        raceOptions[7] = new race() { name = "Human", walkspeed = 30, upperAge =   };
-        raceOptions[8] = new race() { name = "Tiefling", walkspeed = 30, upperAge =   };
+        raceOptions[0] = new race() { name = "Dragonborn", walkspeed = 30, upperAge = 80};
+        raceOptions[1] = new race() { name = "Dwarf", walkspeed = 25, upperAge = 350};
+        raceOptions[2] = new race() { name = "Elf", walkspeed = 30, upperAge = 750};
+        raceOptions[3] = new race() { name = "Gnome", walkspeed = 25, upperAge = 500};
+        raceOptions[4] = new race() { name = "Half-Elf", walkspeed = 30, upperAge = 200};
+        raceOptions[5] = new race() { name = "Half-Orc", walkspeed = 30, upperAge = 80};
+        raceOptions[6] = new race() { name = "Halfling", walkspeed = 25, upperAge = 150};
+        raceOptions[7] = new race() { name = "Human", walkspeed = 30, upperAge = 100};
+        raceOptions[8] = new race() { name = "Tiefling", walkspeed = 30, upperAge = 120};
 
         classoptions[0] = new playerclass() { name = "Barbarian", hp = 12 };
         classoptions[1] = new playerclass() { name = "Paladin", hp = 10 };
@@ -86,6 +86,7 @@ public class RollCharScript : MonoBehaviour
         {
             Pdat.Inst.Pl.race = raceOptions[raceVal - 1].name;
             Pdat.Inst.Pl.walkSpeed = raceOptions[raceVal - 1].walkspeed;
+            Pdat.Inst.Pl.raceAge = raceOptions[raceVal - 1].upperAge;
             wsDis.GetComponent<Text>().text = raceOptions[raceVal - 1].walkspeed.ToString();
         }
         else
@@ -93,8 +94,9 @@ public class RollCharScript : MonoBehaviour
             randompoint = Random.Range(0, 9);
             Pdat.Inst.Pl.race = raceOptions[randompoint].name;
             Pdat.Inst.Pl.walkSpeed = raceOptions[randompoint].walkspeed;
+            Pdat.Inst.Pl.raceAge = raceOptions[randompoint].upperAge;
             wsDis.GetComponent<Text>().text = raceOptions[randompoint].walkspeed.ToString();
-            charRace.GetComponent<Dropdown>().value = ++randompoint;
+            charRace.GetComponent<Dropdown>().value = randompoint+1;
         }
     }
 
@@ -202,7 +204,7 @@ public class RollCharScript : MonoBehaviour
     {
         if (Pdat.Inst.Pl.race == "Dragonborn")
         {
-            Debug.Log(string.Format(Pdat.Inst.Pl.characterName + " is a " + Pdat.Inst.Pl.)));
+            Debug.Log(string.Format(Pdat.Inst.Pl.characterName + " is a " + Random.Range(15,Pdat.Inst.Pl.raceAge)));
         }
         else
         {
