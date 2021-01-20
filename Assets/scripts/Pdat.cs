@@ -29,6 +29,7 @@ public class Pdat : MonoBehaviour
         public int raceAge;
 
         public int abilityChoice;
+        public bool noClass;
 
         public void clear()
         {
@@ -54,12 +55,12 @@ public class Pdat : MonoBehaviour
             if (race == "Dragonborn")
             {
                 sentence = String.Format("{0:Name} is a {1:Age} year old {2:Race} {3:} /nThey have" +
-                    " {5:Color} eyes and {4:Color} scales", playerName);
+                    " {5:Color} eyes and {4:Color} scales", playerName, UnityEngine.Random.Range(15,raceAge), race,);
             }
             else
             {
                 sentence = String.Format("{0:Name} is a {1:Age} year old {2:Race} {3:} /nThey have" +
-                    " {5:Color} eyes and {4:Color} skin", playerName);
+                    " {5:Color} eyes and {4:Color} skin", playerName, UnityEngine.Random.Range(15, raceAge), race);
             }
             return sentence;
         }

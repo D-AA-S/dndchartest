@@ -8,7 +8,8 @@ public class RollCharScript : MonoBehaviour
     //initialization of race and playerclass lists
     static private race[] raceOptions = new race[9];
     static private playerclass[] classoptions = new playerclass[12];
-    static private string[] alignmentoptions, consonants, vowels;
+    static private string[] skinColor,Haircolor;
+    static private string[] alignmentoptions;
     private int alignVal, charVal, raceVal;
     private int randompoint;
     private Queue<int> rolledStats;
@@ -49,11 +50,8 @@ public class RollCharScript : MonoBehaviour
         classoptions[10] = new playerclass() { name = "Sorcerer", hp = 6 };
         classoptions[11] = new playerclass() { name = "Wizard", hp = 6 };
         alignmentoptions = new string[] {"Lawful Good","Lawful Neutral","Lawful Evil","N" +
-            "eutral Good"
-            ,"True Neutral","Neutral Evil","Chaotic Good","Chaotic Neutral","Chaotic Evil"};
-        vowels = new string[] { "a", "e", "i", "o", "u", "ae", "y" };
-        consonants = new string[] { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "l",
-            "n", "p", "q", "r", "s", "sh", "zh", "t", "v", "w", "x" };
+            "eutral Good","True Neutral","Neutral Evil","Chaotic Good","Chaotic Neutral"
+            ,"Chaotic Evil"};
     }
 
     //find matching class & updates it's corresponding values
