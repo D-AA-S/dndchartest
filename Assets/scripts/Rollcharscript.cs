@@ -23,27 +23,28 @@ public class RollCharScript : MonoBehaviour
 
 
     //Adds all races & classes along with corresponding values for later usage
-    public void initialization()
+    private void Start()
     {
-        raceOptions[0] = new race() { name = "Dragonborn", walkspeed = 30};
-        raceOptions[1] = new race() { name = "Dwarf", walkspeed = 25 };
-        raceOptions[2] = new race() { name = "Elf", walkspeed = 30 };
-        raceOptions[3] = new race() { name = "Gnome", walkspeed = 25 };
-        raceOptions[4] = new race() { name = "Half-Elf", walkspeed = 30 };
-        raceOptions[5] = new race() { name = "Half-Orc", walkspeed = 30 };
-        raceOptions[6] = new race() { name = "Halfling", walkspeed = 25 };
-        raceOptions[7] = new race() { name = "Human", walkspeed = 30 };
-        raceOptions[8] = new race() { name = "Tiefling", walkspeed = 30 };
+        names = nameFile.text.Split('\n');
+        raceOptions[0] = new race() { name = "Dragonborn", walkspeed = 30, upperAge =  };
+        raceOptions[1] = new race() { name = "Dwarf", walkspeed = 25, upperAge =   };
+        raceOptions[2] = new race() { name = "Elf", walkspeed = 30, upperAge =   };
+        raceOptions[3] = new race() { name = "Gnome", walkspeed = 25, upperAge =   };
+        raceOptions[4] = new race() { name = "Half-Elf", walkspeed = 30, upperAge =   };
+        raceOptions[5] = new race() { name = "Half-Orc", walkspeed = 30, upperAge =   };
+        raceOptions[6] = new race() { name = "Halfling", walkspeed = 25, upperAge =   };
+        raceOptions[7] = new race() { name = "Human", walkspeed = 30, upperAge =   };
+        raceOptions[8] = new race() { name = "Tiefling", walkspeed = 30, upperAge =   };
 
         classoptions[0] = new playerclass() { name = "Barbarian", hp = 12 };
-        classoptions[1] = new playerclass() { name = "Paladin",  hp = 10 };
-        classoptions[2] = new playerclass() { name = "Ranger",  hp = 10 };
+        classoptions[1] = new playerclass() { name = "Paladin", hp = 10 };
+        classoptions[2] = new playerclass() { name = "Ranger", hp = 10 };
         classoptions[3] = new playerclass() { name = "Fighter", hp = 10 };
-        classoptions[4] = new playerclass() { name = "Bard",  hp = 8 };
-        classoptions[5] = new playerclass() { name = "Cleric",  hp = 8 };
+        classoptions[4] = new playerclass() { name = "Bard", hp = 8 };
+        classoptions[5] = new playerclass() { name = "Cleric", hp = 8 };
         classoptions[6] = new playerclass() { name = "Druid", hp = 8 };
-        classoptions[7] = new playerclass() { name = "Monk",  hp = 8 };
-        classoptions[8] = new playerclass() { name = "Rogue",  hp = 8 };
+        classoptions[7] = new playerclass() { name = "Monk", hp = 8 };
+        classoptions[8] = new playerclass() { name = "Rogue", hp = 8 };
         classoptions[9] = new playerclass() { name = "Warlock", hp = 8 };
         classoptions[10] = new playerclass() { name = "Sorcerer", hp = 6 };
         classoptions[11] = new playerclass() { name = "Wizard", hp = 6 };
@@ -53,7 +54,6 @@ public class RollCharScript : MonoBehaviour
         vowels = new string[] { "a", "e", "i", "o", "u", "ae", "y" };
         consonants = new string[] { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "l",
             "n", "p", "q", "r", "s", "sh", "zh", "t", "v", "w", "x" };
-        Debug.Log(nameFile);
     }
 
     //find matching class & updates it's corresponding values
@@ -99,13 +99,14 @@ public class RollCharScript : MonoBehaviour
     }
 
     //Detects namechanges and adds it to instance
-    public void nameGen(int firstNL)
+    public void nameGen()
     {
-        nameVal = charName.GetComponent<Text>().text;
+        nameVal = charName.GetComponent<InputField>().text;
         if (nameVal == "")
         {
             nameVal = names[Random.Range(0, names.Length-1)];
             Pdat.Inst.Pl.characterName = nameVal;
+            charName.GetComponent<InputField>().text = nameVal;
         }
         else
         {
@@ -199,7 +200,14 @@ public class RollCharScript : MonoBehaviour
 
     public void sentenceGenrate()
     {
-
+        if (Pdat.Inst.Pl.race == "Dragonborn")
+        {
+            Debug.Log(string.Format(Pdat.Inst.Pl.characterName + " is a " + Pdat.Inst.Pl.)));
+        }
+        else
+        {
+            //Debug.Log(string.Format(""));
+        }
     }
 
     //Converts the PlayerData instance into a json file, then outputs it to a window
@@ -211,7 +219,7 @@ public class RollCharScript : MonoBehaviour
         Alignment();
         hpCalc();
         acCalc();
-        nameGen(Pdat.Inst.Pl.firstNameLength);
+        nameGen();
         sentenceGenrate();
     }
 
@@ -230,12 +238,14 @@ public class RollCharScript : MonoBehaviour
         intDis.GetComponent<Text>().text = "";
         wisDis.GetComponent<Text>().text = "";
         chaDis.GetComponent<Text>().text = "";
+        charName.GetComponent<InputField>().text = "";
     }
 
     public class race
     {
         public string name = "";
         public int walkspeed = 0;
+        public int upperAge = 0;
     }
     public class playerclass
     {

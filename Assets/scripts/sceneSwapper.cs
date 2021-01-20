@@ -20,12 +20,6 @@ public class SceneSwapper : MonoBehaviour
     public void sceneswap(string sceneToLoad)
     {
         SceneManager.LoadScene(sceneToLoad);
-        if (sceneToLoad == "RollChar")
-        {
-            //getting rollcharacter script to load during sceneswapping
-            RollCharScript rcs = GameObject.Find("RollCharacter").GetComponent<RollCharScript>();
-            rcs.initialization();
-        }
     }
     public void quit()
     {

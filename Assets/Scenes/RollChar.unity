@@ -1158,7 +1158,7 @@ MonoBehaviour:
   charAlign: {fileID: 1109303888}
   charClass: {fileID: 232058317}
   charRace: {fileID: 547495650}
-  charName: {fileID: 165731542}
+  charName: {fileID: 1381456913}
   wsDis: {fileID: 397156211}
   hpDis: {fileID: 424941723}
   acDis: {fileID: 902278030}

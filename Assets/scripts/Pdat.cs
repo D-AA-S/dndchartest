@@ -29,7 +29,6 @@ public class Pdat : MonoBehaviour
 
         public int abilityChoice;
         public bool noClass;
-        public int firstNameLength = 7;
 
         public void clear()
         {
