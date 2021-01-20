@@ -107,12 +107,12 @@ public class RollCharScript : MonoBehaviour
         if (nameVal == "")
         {
             nameVal = names[Random.Range(0, names.Length-1)];
-            Pdat.Inst.Pl.characterName = nameVal;
+            Pdat.Inst.Pl.playerName = nameVal;
             charName.GetComponent<InputField>().text = nameVal;
         }
         else
         {
-            Pdat.Inst.Pl.characterName = nameVal;
+            Pdat.Inst.Pl.playerName = nameVal;
         }
     }
 
@@ -202,14 +202,6 @@ public class RollCharScript : MonoBehaviour
 
     public void sentenceGenrate()
     {
-        if (Pdat.Inst.Pl.race == "Dragonborn")
-        {
-            Debug.Log(string.Format(Pdat.Inst.Pl.characterName + " is a " + Random.Range(15,Pdat.Inst.Pl.raceAge)));
-        }
-        else
-        {
-            //Debug.Log(string.Format(""));
-        }
     }
 
     //Converts the PlayerData instance into a json file, then outputs it to a window

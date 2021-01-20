@@ -17,7 +17,7 @@ public class Pdat : MonoBehaviour
         public float abilityCha;
 
         //character choices
-        public string characterName;
+        public string playerName;
         public string race;
         public string playerClass;
         public string alignment;
@@ -29,7 +29,6 @@ public class Pdat : MonoBehaviour
         public int raceAge;
 
         public int abilityChoice;
-        public bool noClass;
 
         public void clear()
         {
@@ -39,13 +38,30 @@ public class Pdat : MonoBehaviour
             abilityInt = 0;
             abilityWis = 0;
             abilityCha = 0;
-            characterName = "";
+            playerName = "";
             race = "";
             playerClass = "";
             alignment = "";
             hp = 0;
             armorClass = 0;
             walkSpeed = 0;
+            raceAge = 0; 
+        }
+
+        public string description()
+        {
+            string sentence = "";
+            if (race == "Dragonborn")
+            {
+                sentence = String.Format("{0:Name} is a {1:Age} year old {2:Race} {3:} /nThey have" +
+                    " {5:Color} eyes and {4:Color} scales", playerName);
+            }
+            else
+            {
+                sentence = String.Format("{0:Name} is a {1:Age} year old {2:Race} {3:} /nThey have" +
+                    " {5:Color} eyes and {4:Color} skin", playerName);
+            }
+            return sentence;
         }
     }
 
