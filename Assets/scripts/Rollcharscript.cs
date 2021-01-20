@@ -14,10 +14,12 @@ public class RollCharScript : MonoBehaviour
     private Queue<int> rolledStats;
     static private int abilityNum = 6;
     private string nameVal;
+    private string[] names;
 
     public GameObject charAlign, charClass, charRace, charName;
     public Text wsDis,hpDis,acDis; //Text windows that display the hp, walkspeed, ac values
     public Text strDis, dexDis, conDis, intDis, wisDis, chaDis; //Text windows that display the stat values
+    public TextAsset nameFile;
 
 
     //Adds all races & classes along with corresponding values for later usage
@@ -51,6 +53,7 @@ public class RollCharScript : MonoBehaviour
         vowels = new string[] { "a", "e", "i", "o", "u", "ae", "y" };
         consonants = new string[] { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "l",
             "n", "p", "q", "r", "s", "sh", "zh", "t", "v", "w", "x" };
+        Debug.Log(nameFile);
     }
 
     //find matching class & updates it's corresponding values
@@ -96,11 +99,13 @@ public class RollCharScript : MonoBehaviour
     }
 
     //Detects namechanges and adds it to instance
-    public void nameGen(int firstNL, int lastNL)
+    public void nameGen(int firstNL)
     {
         nameVal = charName.GetComponent<Text>().text;
         if (nameVal == "")
         {
+            nameVal = names[Random.Range(0, names.Length-1)];
+            Pdat.Inst.Pl.characterName = nameVal;
         }
         else
         {
@@ -206,6 +211,7 @@ public class RollCharScript : MonoBehaviour
         Alignment();
         hpCalc();
         acCalc();
+        nameGen(Pdat.Inst.Pl.firstNameLength);
         sentenceGenrate();
     }
 
