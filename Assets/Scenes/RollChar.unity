@@ -1236,6 +1236,7 @@ MonoBehaviour:
   wsDis: {fileID: 397156211}
   hpDis: {fileID: 424941723}
   acDis: {fileID: 902278030}
+  sentenceDis: {fileID: 1298794186}
   strDis: {fileID: 702735990}
   dexDis: {fileID: 1522677156}
   conDis: {fileID: 1981613324}
@@ -1752,7 +1753,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 
 --- !u!222 &424941724
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2957,7 +2958,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10
+  m_Text: 
 --- !u!222 &902278031
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3988,7 +3989,7 @@ GameObject:
   - component: {fileID: 1298794187}
   - component: {fileID: 1298794186}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4010,8 +4011,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 64.44, y: 57.28}
-  m_SizeDelta: {x: 374.31128, y: 98.24129}
+  m_AnchoredPosition: {x: 63.68, y: 57.28}
+  m_SizeDelta: {x: 373.48425, y: 98.24129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1298794186
 MonoBehaviour:
@@ -4033,7 +4034,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: e3388e7868251ac4abc7175cbc240a00, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -4045,7 +4046,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1298794187
 CanvasRenderer:
   m_ObjectHideFlags: 0

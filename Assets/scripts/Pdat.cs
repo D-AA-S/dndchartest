@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.IO;
 
 public class Pdat : MonoBehaviour
 {
@@ -27,9 +28,12 @@ public class Pdat : MonoBehaviour
         public int armorClass;
         public int walkSpeed;
         public int raceAge;
+        public int charAge;
 
         public int abilityChoice;
-        public bool noClass;
+        private string outputSentence;
+        private string fileName;
+
 
         public void clear()
         {
@@ -46,24 +50,34 @@ public class Pdat : MonoBehaviour
             hp = 0;
             armorClass = 0;
             walkSpeed = 0;
-            raceAge = 0; 
+            raceAge = 0;
+            outputSentence = "";
+            fileName = "";
         }
 
         public string description(string eyeCol, string scaleCol, string skinCol)
         {
             string sentence = "";
+            charAge = UnityEngine.Random.Range(15, raceAge);
             if (race == "Dragonborn")
             {
                 sentence = String.Format("{0:Name} is a {1:Age} year old {2:Race} {3:} \nThey have" +
-                    " {4:Color} eyes and {5:Color} scales", playerName, UnityEngine.Random.Range(15,raceAge).ToString(), race, playerClass, eyeCol, scaleCol);
+                    " {4:Color} eyes and {5:Color} scales", playerName, charAge, race, playerClass, eyeCol, scaleCol);
             }
             else
             {
                 sentence = String.Format("{0:Name} is a {1:Age} year old {2:Race} {3:} \nThey have" +
-                    " {4:Color} eyes and {5:Color} skin", playerName, UnityEngine.Random.Range(15, raceAge).ToString(), race, playerClass, eyeCol, skinCol);
+                    " {4:Color} eyes and {5:Color} skin", playerName, charAge, race, playerClass, eyeCol, skinCol);
             }
+            outputSentence = sentence;
+            fileName = String.Format("{0:Name}{1:Age}{2:Race}",playerName,charAge,race);
             return sentence;
         }
+
+        public void outputAFile()
+        {
+        }
+
     }
 
     public static Pdat Inst;

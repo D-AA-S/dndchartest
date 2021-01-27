@@ -18,7 +18,7 @@ public class RollCharScript : MonoBehaviour
     private string[] names, scaleColor, eyeColor, skinCol;
 
     public GameObject charAlign, charClass, charRace, charName;
-    public Text wsDis,hpDis,acDis; //Text windows that display the hp, walkspeed, ac values
+    public Text wsDis,hpDis,acDis,sentenceDis; //Text windows that display the hp, walkspeed, ac values
     public Text strDis, dexDis, conDis, intDis, wisDis, chaDis; //Text windows that display the stat values
     public TextAsset nameFile;
 
@@ -211,7 +211,8 @@ public class RollCharScript : MonoBehaviour
 
     public void sentenceGenrate()
     {
-        Debug.Log(Pdat.Inst.Pl.description(charRolling('E'), charRolling('C'), charRolling('S')));
+        sentenceDis.GetComponent<Text>().text = Pdat.Inst.Pl.description(charRolling('E'),
+            charRolling('C'), charRolling('S'));
     }
 
     //Converts the PlayerData instance into a json file, then outputs it to a window
@@ -243,6 +244,7 @@ public class RollCharScript : MonoBehaviour
         wisDis.GetComponent<Text>().text = "";
         chaDis.GetComponent<Text>().text = "";
         charName.GetComponent<InputField>().text = "";
+        sentenceDis.GetComponent<Text>().text = "";
     }
 
     public string characteristicRoller(char rollOption)
