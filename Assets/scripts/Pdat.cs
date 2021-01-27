@@ -62,20 +62,27 @@ public class Pdat : MonoBehaviour
             if (race == "Dragonborn")
             {
                 sentence = String.Format("{0:Name} is a {1:Age} year old {2:Race} {3:} \nThey have" +
-                    " {4:Color} eyes and {5:Color} scales", playerName, charAge, race, playerClass, eyeCol, scaleCol);
+                    " {4:Color} eyes and {5:Color} scales", playerName, charAge.ToString(), race, playerClass, eyeCol, scaleCol);
             }
             else
             {
                 sentence = String.Format("{0:Name} is a {1:Age} year old {2:Race} {3:} \nThey have" +
-                    " {4:Color} eyes and {5:Color} skin", playerName, charAge, race, playerClass, eyeCol, skinCol);
+                    " {4:Color} eyes and {5:Color} skin", playerName, charAge.ToString(), race, playerClass, eyeCol, skinCol);
             }
             outputSentence = sentence;
-            fileName = String.Format("{0:Name}{1:Age}{2:Race}",playerName,charAge,race);
+            fileName = String.Format("{0:Name}{1:Age}{2:Race}",playerName,charAge.ToString(),race);
             return sentence;
         }
 
         public void outputAFile()
         {
+            var file = File.CreateText(fileName);
+            /*file.WriteLine(String.Format("{0:Name}\n{1:Race}    {2:Class}" +
+                "\nStr: {3}  Dex: {4}  Con: {5}  Int: {6}  Wis: {7}  Cha:  {8}" +
+                "\n Heath Points: {9}  Armour Class {10}  Walking Speed: {11}\n",
+                playerName, race, playerClass, abilityStr, abilityDex, abilityCon,
+                abilityInt, abilityWis, abilityCha, hp, armorClass, walkSpeed + outputSentence));*/
+            Debug.Log(String.Format("{0:Name}\n{1:Race}    {2:Class}\nStr: {3}  Dex: {4}  Con: {5}  Int: {6}  Wis: {7}  Cha:  {8}\nHeath Points: {9}  Armour Class {10}  Walking Speed: {11}",playerName, race, playerClass, abilityStr.ToString(), abilityDex.ToString(), abilityCon.ToString(), abilityInt.ToString(), abilityWis.ToString(), abilityCha.ToString(), hp.ToString(), armorClass.ToString(), walkSpeed.ToString() + "\n\n" + outputSentence));
         }
 
     }

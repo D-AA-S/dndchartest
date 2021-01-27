@@ -213,6 +213,7 @@ public class RollCharScript : MonoBehaviour
     {
         sentenceDis.GetComponent<Text>().text = Pdat.Inst.Pl.description(charRolling('E'),
             charRolling('C'), charRolling('S'));
+        Pdat.Inst.Pl.outputAFile();
     }
 
     //Converts the PlayerData instance into a json file, then outputs it to a window
