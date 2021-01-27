@@ -15,7 +15,7 @@ public class RollCharScript : MonoBehaviour
     private Queue<int> rolledStats;
     static private int abilityNum = 6;
     private string nameVal;
-    private string[] names;
+    private string[] names, scaleColor, eyeColor, skinCol;
 
     public GameObject charAlign, charClass, charRace, charName;
     public Text wsDis,hpDis,acDis; //Text windows that display the hp, walkspeed, ac values
@@ -27,6 +27,8 @@ public class RollCharScript : MonoBehaviour
     private void Start()
     {
         names = nameFile.text.Split('\n');
+        scaleColor = new string[] { "Brass", "Gold", "Bronze", "Copper", "Silver","Blue",
+            "Black", "Green", "Red", "White" };
         raceOptions[0] = new race() { name = "Dragonborn", walkspeed = 30, upperAge = 80};
         raceOptions[1] = new race() { name = "Dwarf", walkspeed = 25, upperAge = 350};
         raceOptions[2] = new race() { name = "Elf", walkspeed = 30, upperAge = 750};
