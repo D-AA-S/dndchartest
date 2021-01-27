@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,13 +9,12 @@ public class RollCharScript : MonoBehaviour
     //initialization of race and playerclass lists
     static private race[] raceOptions = new race[9];
     static private playerclass[] classoptions = new playerclass[12];
-    static private string[] skinColor,Haircolor;
     static private string[] alignmentoptions;
     private int alignVal, charVal, raceVal;
     private int randompoint;
     private Queue<int> rolledStats;
     static private int abilityNum = 6;
-    private string nameVal;
+    private string nameVal,characteristicRoll;
     private string[] names, scaleColor, eyeColor, skinCol;
 
     public GameObject charAlign, charClass, charRace, charName;
@@ -22,13 +22,14 @@ public class RollCharScript : MonoBehaviour
     public Text strDis, dexDis, conDis, intDis, wisDis, chaDis; //Text windows that display the stat values
     public TextAsset nameFile;
 
+    private delegate string randomRoller(char rollOption);
+    private randomRoller charRolling;
+    private System.Random rollme;
+
 
     //Adds all races & classes along with corresponding values for later usage
     private void Start()
     {
-        names = nameFile.text.Split('\n');
-        scaleColor = new string[] { "Brass", "Gold", "Bronze", "Copper", "Silver","Blue",
-            "Black", "Green", "Red", "White" };
         raceOptions[0] = new race() { name = "Dragonborn", walkspeed = 30, upperAge = 80};
         raceOptions[1] = new race() { name = "Dwarf", walkspeed = 25, upperAge = 350};
         raceOptions[2] = new race() { name = "Elf", walkspeed = 30, upperAge = 750};
@@ -51,9 +52,16 @@ public class RollCharScript : MonoBehaviour
         classoptions[9] = new playerclass() { name = "Warlock", hp = 8 };
         classoptions[10] = new playerclass() { name = "Sorcerer", hp = 6 };
         classoptions[11] = new playerclass() { name = "Wizard", hp = 6 };
-        alignmentoptions = new string[] {"Lawful Good","Lawful Neutral","Lawful Evil","N" +
-            "eutral Good","True Neutral","Neutral Evil","Chaotic Good","Chaotic Neutral"
+        scaleColor = new string[] { "Brass", "Gold", "Bronze", "Copper", "Silver","Blue",
+            "Black", "Green", "Red", "White" };
+        eyeColor = new string[] { "Brown", "Blue", "Gray", "Hazel", "Green", "Amber", "Pale" };
+        skinCol = new string[] { "Ivory", "Beige", "Light brown", "Medium brown", "Dark brown", "Very dark brown" };
+        alignmentoptions = new string[] {"Lawful Good","Lawful Neutral","Lawful Evil",
+            "Neutral Good","True Neutral","Neutral Evil","Chaotic Good","Chaotic Neutral"
             ,"Chaotic Evil"};
+        names = nameFile.text.Split('\n');
+        rollme = new System.Random();
+        charRolling = characteristicRoller;
     }
 
     //find matching class & updates it's corresponding values
@@ -67,11 +75,12 @@ public class RollCharScript : MonoBehaviour
         }
         else if (charVal == 1)
         {
-            Pdat.Inst.Pl.noClass = true;
+            Pdat.Inst.Pl.playerClass = "";
+            Pdat.Inst.Pl.hp = UnityEngine.Random.Range(1,9);
         }
         else
         {
-            randompoint = Random.Range(0, 11);
+            randompoint = UnityEngine.Random.Range(0, 11);
             Pdat.Inst.Pl.playerClass = classoptions[randompoint].name;
             Pdat.Inst.Pl.hp = classoptions[randompoint].hp;
             charClass.GetComponent<Dropdown>().value = ++randompoint;
@@ -91,7 +100,7 @@ public class RollCharScript : MonoBehaviour
         }
         else
         {
-            randompoint = Random.Range(0, 9);
+            randompoint = UnityEngine.Random.Range(0, 9);
             Pdat.Inst.Pl.race = raceOptions[randompoint].name;
             Pdat.Inst.Pl.walkSpeed = raceOptions[randompoint].walkspeed;
             Pdat.Inst.Pl.raceAge = raceOptions[randompoint].upperAge;
@@ -106,7 +115,7 @@ public class RollCharScript : MonoBehaviour
         nameVal = charName.GetComponent<InputField>().text;
         if (nameVal == "")
         {
-            nameVal = names[Random.Range(0, names.Length-1)];
+            nameVal = names[UnityEngine.Random.Range(0, names.Length-1)];
             Pdat.Inst.Pl.playerName = nameVal;
             charName.GetComponent<InputField>().text = nameVal;
         }
@@ -126,7 +135,7 @@ public class RollCharScript : MonoBehaviour
         }
         else
         {
-            randompoint = Random.Range(0, 9);
+            randompoint = UnityEngine.Random.Range(0, 9);
             Pdat.Inst.Pl.alignment = alignmentoptions[randompoint];
             charAlign.GetComponent<Dropdown>().value = randompoint;
         }
@@ -143,7 +152,7 @@ public class RollCharScript : MonoBehaviour
             int total;
             for (int j = 0; j < diceNum; j++)
             {
-                d6roll.Add(Random.Range(1, 7));
+                d6roll.Add(UnityEngine.Random.Range(1, 7));
             }
             d6roll.Sort();
             total = d6roll[diceNum-1] + d6roll[diceNum-2] + d6roll[diceNum-3]; //Gets the highest rolls from the bottom of the list & totals them
@@ -163,7 +172,7 @@ public class RollCharScript : MonoBehaviour
         dist.Add(8);
         for (int i = 0; i < abilityNum; i++)
         {
-            randompoint = Random.Range(0, dist.Count);
+            randompoint = UnityEngine.Random.Range(0, dist.Count);
             rolledStats.Enqueue(dist[randompoint]);
             dist.RemoveAt(randompoint);
         }
@@ -202,6 +211,7 @@ public class RollCharScript : MonoBehaviour
 
     public void sentenceGenrate()
     {
+        Debug.Log(Pdat.Inst.Pl.description(charRolling('E'), charRolling('C'), charRolling('S')));
     }
 
     //Converts the PlayerData instance into a json file, then outputs it to a window
@@ -233,6 +243,23 @@ public class RollCharScript : MonoBehaviour
         wisDis.GetComponent<Text>().text = "";
         chaDis.GetComponent<Text>().text = "";
         charName.GetComponent<InputField>().text = "";
+    }
+
+    public string characteristicRoller(char rollOption)
+    {
+        switch (rollOption)
+        {
+            case 'E':
+                characteristicRoll = eyeColor[rollme.Next(eyeColor.Length)];
+                break;
+            case 'C':
+                characteristicRoll = scaleColor[rollme.Next(scaleColor.Length)];
+                break;
+            case 'S':
+                characteristicRoll = skinCol[rollme.Next(skinCol.Length)];
+                break;
+        }
+        return characteristicRoll;
     }
 
     public class race

@@ -49,18 +49,18 @@ public class Pdat : MonoBehaviour
             raceAge = 0; 
         }
 
-        public string description()
+        public string description(string eyeCol, string scaleCol, string skinCol)
         {
             string sentence = "";
             if (race == "Dragonborn")
             {
-                sentence = String.Format("{0:Name} is a {1:Age} year old {2:Race} {3:} /nThey have" +
-                    " {5:Color} eyes and {4:Color} scales", playerName, UnityEngine.Random.Range(15,raceAge), race);
+                sentence = String.Format("{0:Name} is a {1:Age} year old {2:Race} {3:} \nThey have" +
+                    " {4:Color} eyes and {5:Color} scales", playerName, UnityEngine.Random.Range(15,raceAge).ToString(), race, playerClass, eyeCol, scaleCol);
             }
             else
             {
-                sentence = String.Format("{0:Name} is a {1:Age} year old {2:Race} {3:} /nThey have" +
-                    " {5:Color} eyes and {4:Color} skin", playerName, UnityEngine.Random.Range(15, raceAge), race);
+                sentence = String.Format("{0:Name} is a {1:Age} year old {2:Race} {3:} \nThey have" +
+                    " {4:Color} eyes and {5:Color} skin", playerName, UnityEngine.Random.Range(15, raceAge).ToString(), race, playerClass, eyeCol, skinCol);
             }
             return sentence;
         }
