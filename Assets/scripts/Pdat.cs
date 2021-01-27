@@ -76,13 +76,18 @@ public class Pdat : MonoBehaviour
 
         public void outputAFile()
         {
-            var file = File.CreateText(fileName);
-            /*file.WriteLine(String.Format("{0:Name}\n{1:Race}    {2:Class}" +
+            File.WriteAllBytes(Application.dataPath.Replace("Assets", "Downloaded Sheets/"+fileName+".txt"), 
+                System.Text.Encoding.UTF8.GetBytes(String.Format("{0:Name}\n{1:Race}    {2:Class}" +
                 "\nStr: {3}  Dex: {4}  Con: {5}  Int: {6}  Wis: {7}  Cha:  {8}" +
                 "\n Heath Points: {9}  Armour Class {10}  Walking Speed: {11}\n",
-                playerName, race, playerClass, abilityStr, abilityDex, abilityCon,
-                abilityInt, abilityWis, abilityCha, hp, armorClass, walkSpeed + outputSentence));*/
-            Debug.Log(String.Format("{0:Name}\n{1:Race}    {2:Class}\nStr: {3}  Dex: {4}  Con: {5}  Int: {6}  Wis: {7}  Cha:  {8}\nHeath Points: {9}  Armour Class {10}  Walking Speed: {11}",playerName, race, playerClass, abilityStr.ToString(), abilityDex.ToString(), abilityCon.ToString(), abilityInt.ToString(), abilityWis.ToString(), abilityCha.ToString(), hp.ToString(), armorClass.ToString(), walkSpeed.ToString() + "\n\n" + outputSentence));
+                playerName, race, playerClass, abilityStr.ToString(), abilityDex.ToString(), abilityCon.ToString(),
+                abilityInt.ToString(), abilityWis.ToString(), abilityCha.ToString(), hp.ToString(), armorClass.ToString(), 
+                walkSpeed.ToString() + outputSentence)));
+            /*Debug.Log(String.Format("{0:Name}\n{1:Race}    {2:Class}\nStr: {3}  Dex: {4}  Con: {5}" +
+                "  Int: {6}  Wis: {7}  Cha:  {8}\nHeath Points: {9}  Armour Class {10}  Walking Speed:" +
+                " {11}",playerName, race, playerClass, abilityStr.ToString(), abilityDex.ToString(), 
+                abilityCon.ToString(), abilityInt.ToString(), abilityWis.ToString(), abilityCha.ToString(),
+                hp.ToString(), armorClass.ToString(), walkSpeed.ToString() + "\n\n" + outputSentence));*/
         }
 
     }
