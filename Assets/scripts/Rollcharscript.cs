@@ -18,6 +18,7 @@ public class RollCharScript : MonoBehaviour
     private string[] names, scaleColor, eyeColor, skinCol;
 
     public GameObject charAlign, charClass, charRace, charName;
+    public GameObject generateButton, resetButton, downloadButton;
     public Text wsDis,hpDis,acDis,sentenceDis; //Text windows that display the hp, walkspeed, ac values
     public Text strDis, dexDis, conDis, intDis, wisDis, chaDis; //Text windows that display the stat values
     public TextAsset nameFile;
@@ -30,6 +31,8 @@ public class RollCharScript : MonoBehaviour
     //Adds all races & classes along with corresponding values for later usage
     private void Start()
     {
+        resetButton.SetActive(false);
+        downloadButton.SetActive(false);
         raceOptions[0] = new race() { name = "Dragonborn", walkspeed = 30, upperAge = 80};
         raceOptions[1] = new race() { name = "Dwarf", walkspeed = 25, upperAge = 350};
         raceOptions[2] = new race() { name = "Elf", walkspeed = 30, upperAge = 750};
@@ -115,7 +118,7 @@ public class RollCharScript : MonoBehaviour
         nameVal = charName.GetComponent<InputField>().text;
         if (nameVal == "")
         {
-            nameVal = names[UnityEngine.Random.Range(0, names.Length-1)];
+            nameVal = names[UnityEngine.Random.Range(0, names.Length-1)].TrimEnd();
             Pdat.Inst.Pl.playerName = nameVal;
             charName.GetComponent<InputField>().text = nameVal;
         }
@@ -213,12 +216,14 @@ public class RollCharScript : MonoBehaviour
     {
         sentenceDis.GetComponent<Text>().text = Pdat.Inst.Pl.description(charRolling('E'),
             charRolling('C'), charRolling('S'));
-        Pdat.Inst.Pl.outputAFile();
     }
 
     //Converts the PlayerData instance into a json file, then outputs it to a window
     public void generate()
     {
+        generateButton.SetActive(false);
+        resetButton.SetActive(true);
+        downloadButton.SetActive(true);
         characterclass();
         characterrace();
         statRolls();
@@ -231,6 +236,9 @@ public class RollCharScript : MonoBehaviour
 
     public void reset()
     {
+        generateButton.SetActive(true);
+        resetButton.SetActive(false);
+        downloadButton.SetActive(false);
         Pdat.Inst.Pl.clear();
         charAlign.GetComponent<Dropdown>().value = 0;
         charClass.GetComponent<Dropdown>().value = 0;
@@ -248,6 +256,10 @@ public class RollCharScript : MonoBehaviour
         sentenceDis.GetComponent<Text>().text = "";
     }
 
+    public void download()
+    {
+        Pdat.Inst.Pl.outputAFile();
+    }
     public string characteristicRoller(char rollOption)
     {
         switch (rollOption)
