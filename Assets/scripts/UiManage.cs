@@ -11,6 +11,7 @@ public class UiManage : MonoBehaviour
     void Start()
     {
         rollchoice.GetComponent<Dropdown>().value = Pdat.Inst.Pl.abilityChoice;
+        textdescription(Pdat.Inst.Pl.abilityChoice);
     }
 
     public void settingchanged()
@@ -39,5 +40,9 @@ public class UiManage : MonoBehaviour
                 Pdat.Inst.Pl.abilityChoice = rollChoice;
                 break;
         }
+    }
+    public void filePathing()
+    {
+        Application.OpenURL("file://[dir]");
     }
 }

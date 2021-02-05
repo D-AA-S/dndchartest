@@ -1,0 +1,6 @@
+Veronica
+Halfling    Monk
+Str: 14  Dex: 14  Con: 15  Int: 12  Wis: 11  Cha:  12
+Heath Points: 10  Armour Class 12  Walking Speed: 25
+Veronica is a 148 year old Halfling Monk
+They have Blue eyes and Light brown skin

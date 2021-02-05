@@ -1,0 +1,6 @@
+Brecken
+Human    Barbarian
+Str: 11  Dex: 12  Con: 8  Int: 14  Wis: 10  Cha:  12
+Heath Points: 11  Armour Class 10  Walking Speed: 30
+Brecken is a 41 year old Human Barbarian
+They have Pale eyes and Dark brown skin

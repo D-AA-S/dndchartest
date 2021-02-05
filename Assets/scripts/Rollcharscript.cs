@@ -86,7 +86,7 @@ public class RollCharScript : MonoBehaviour
             randompoint = UnityEngine.Random.Range(0, 11);
             Pdat.Inst.Pl.playerClass = classoptions[randompoint].name;
             Pdat.Inst.Pl.hp = classoptions[randompoint].hp;
-            charClass.GetComponent<Dropdown>().value = ++randompoint;
+            charClass.GetComponent<Dropdown>().value = randompoint+2;
         }
     }
 
@@ -140,7 +140,7 @@ public class RollCharScript : MonoBehaviour
         {
             randompoint = UnityEngine.Random.Range(0, 9);
             Pdat.Inst.Pl.alignment = alignmentoptions[randompoint];
-            charAlign.GetComponent<Dropdown>().value = randompoint;
+            charAlign.GetComponent<Dropdown>().value = randompoint+1;
         }
     }
 

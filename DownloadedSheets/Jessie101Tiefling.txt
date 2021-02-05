@@ -1,0 +1,6 @@
+Jessie
+Tiefling    Monk
+Str: 7  Dex: 17  Con: 11  Int: 11  Wis: 12  Cha:  14
+Heath Points: 8  Armour Class 14  Walking Speed: 30
+Jessie is a 101 year old Tiefling Monk
+They have Blue eyes and Dark brown skin
